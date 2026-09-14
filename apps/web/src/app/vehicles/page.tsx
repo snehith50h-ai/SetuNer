@@ -173,7 +173,7 @@ export default function VehiclesPage() {
       </div>
 
       {/* Filter Controls & View Toggle */}
-      <div className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-3">
+      <div className="glass-panel p-4 rounded-2xl shadow-glass flex flex-col sm:flex-row items-center gap-3">
         <div className="relative flex-1 w-full">
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -184,7 +184,7 @@ export default function VehiclesPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full bg-slate-50/70 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+            className="w-full glass-input rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 transition-all"
           />
         </div>
 
@@ -196,7 +196,7 @@ export default function VehiclesPage() {
               setSelectedStatus(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full sm:w-44 bg-slate-50/70 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+            className="w-full sm:w-44 glass-input rounded-xl px-3 py-2 text-xs text-slate-700 font-medium transition-all"
           >
             <option value="ALL">All Trucks ({vehicles?.length || 0})</option>
             <option value="MOVING">Moving ({totalMoving})</option>
@@ -207,12 +207,12 @@ export default function VehiclesPage() {
         </div>
 
         {/* View Mode Toggle & Refresh */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl border border-slate-200/80 self-end sm:self-auto">
+        <div className="flex items-center gap-1.5 p-1 bg-white/40 backdrop-blur-md rounded-xl border border-white/60 self-end sm:self-auto">
           <button
             onClick={() => setViewMode("grid")}
             className={`p-1.5 rounded-lg transition-colors ${
               viewMode === "grid"
-                ? "bg-white text-brand-600 shadow-xs"
+                ? "bg-white text-brand-600 shadow-glass"
                 : "text-slate-500 hover:text-slate-800"
             }`}
             title="Card Grid View"
@@ -224,7 +224,7 @@ export default function VehiclesPage() {
             onClick={() => setViewMode("table")}
             className={`p-1.5 rounded-lg transition-colors ${
               viewMode === "table"
-                ? "bg-white text-brand-600 shadow-xs"
+                ? "bg-white text-brand-600 shadow-glass"
                 : "text-slate-500 hover:text-slate-800"
             }`}
             title="Table List View"
@@ -269,7 +269,7 @@ export default function VehiclesPage() {
                 <div
                   key={veh.id}
                   onClick={() => setActiveTruck(truckData)}
-                  className="p-5 rounded-2xl border border-slate-200/80 bg-white hover:border-brand-300 hover:shadow-card hover:-translate-y-0.5 transition-all cursor-pointer space-y-4 group"
+                  className="p-5 rounded-2xl glass-card glass-card-hover cursor-pointer space-y-4 group transition-all"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
@@ -385,9 +385,9 @@ export default function VehiclesPage() {
       ) : (
         /* Table View */
         <div className="space-y-4">
-          <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white shadow-card">
+          <div className="overflow-x-auto rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl shadow-glass">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/80 border-b border-slate-100 text-slate-400 uppercase tracking-wider text-[11px] font-semibold select-none">
+              <thead className="bg-slate-50/60 backdrop-blur-md border-b border-slate-200/60 text-slate-400 uppercase tracking-wider text-[11px] font-semibold select-none">
                 <tr>
                   <th
                     onClick={() => handleSort("registration_number")}

@@ -1,0 +1,9 @@
+{
+  "pid": 4556,
+  "port": 7331,
+  "page": null,
+  "log": "C:\\seturoute2\\.refine-relay.log",
+  "version": "0.3.34",
+  "agentCmd": "C:\\Users\\snehi\\.local\\bin\\claude -p --dangerously-skip-permissions",
+  "startedAt": "2026-09-14T21:58:03.108Z"
+}

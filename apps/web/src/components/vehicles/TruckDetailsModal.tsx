@@ -129,8 +129,8 @@ export const TruckDetailsModal: React.FC<TruckDetailsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="w-full max-w-lg bg-white border border-slate-200/90 rounded-2xl shadow-floating p-6 space-y-5 text-xs animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-[250ms]">
+      <div className="w-full max-w-lg bg-white border border-slate-200/90 rounded-2xl shadow-floating p-6 space-y-5 text-xs animate-in fade-in zoom-in-95 duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-slate-100 pb-4">
           <div className="flex items-center gap-3">

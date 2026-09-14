@@ -163,7 +163,7 @@ export default function StatisticsPage() {
   return (
     <div className="space-y-8 pb-16">
       {/* 1. Header & Controls */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 glass-panel p-6 rounded-2xl shadow-glass">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wider mb-1.5">
             <span className="flex h-2 w-2 rounded-full bg-brand-600 animate-pulse" />
@@ -180,7 +180,7 @@ export default function StatisticsPage() {
         {/* Action Controls: Time Range & Export */}
         <div className="flex flex-wrap items-center gap-2.5 self-start xl:self-auto">
           {/* Time Range Selector */}
-          <div className="flex items-center bg-slate-50 border border-slate-200 rounded-xl p-1 shadow-xs">
+          <div className="flex items-center bg-white/40 backdrop-blur-md border border-white/60 rounded-xl p-1 shadow-glass">
             <Calendar className="w-3.5 h-3.5 text-slate-400 ml-2 mr-1 shrink-0" />
             <select
               value={timeRange}
@@ -198,7 +198,7 @@ export default function StatisticsPage() {
           {/* Export & PDF Buttons */}
           <button
             onClick={() => setIsReportModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 transition-colors shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/60 bg-white/50 hover:bg-white/80 text-xs font-semibold text-slate-700 transition-colors shadow-glass"
           >
             <Download className="w-3.5 h-3.5 text-slate-500" />
             <span>Export Report</span>
@@ -206,7 +206,7 @@ export default function StatisticsPage() {
 
           <button
             onClick={() => setIsReportModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-xs font-semibold text-white transition-colors shadow-xs hover:shadow-md shadow-brand-500/10"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-xs font-semibold text-white transition-colors shadow-glass shadow-brand-500/20"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Download PDF</span>
@@ -215,7 +215,7 @@ export default function StatisticsPage() {
       </div>
 
       {/* Quick Filter Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-slate-50/80 border border-slate-200/80 rounded-2xl text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 glass-panel rounded-2xl text-xs shadow-glass">
         <div className="flex flex-wrap items-center gap-2.5">
           <span className="flex items-center gap-1.5 font-semibold text-slate-500">
             <Filter className="w-3.5 h-3.5 text-slate-400" />
@@ -226,7 +226,7 @@ export default function StatisticsPage() {
           <select
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
-            className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer shadow-xs"
+            className="glass-input rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer"
           >
             {NER_STATES.map((st) => (
               <option key={st} value={st}>{st}</option>
@@ -237,7 +237,7 @@ export default function StatisticsPage() {
           <select
             value={selectedCorridor}
             onChange={(e) => setSelectedCorridor(e.target.value)}
-            className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer shadow-xs"
+            className="glass-input rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer"
           >
             <option value="">All Corridors (8 Arteries)</option>
             {(corridors || []).map((c: any) => (
@@ -249,7 +249,7 @@ export default function StatisticsPage() {
           <select
             value={selectedIncidentType}
             onChange={(e) => setSelectedIncidentType(e.target.value)}
-            className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer shadow-xs"
+            className="glass-input rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer"
           >
             <option value="">All Incident Types</option>
             <option value="landslide">Landslide / Rockfall</option>
@@ -263,7 +263,7 @@ export default function StatisticsPage() {
           <select
             value={selectedRiskLevel}
             onChange={(e) => setSelectedRiskLevel(e.target.value)}
-            className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer shadow-xs"
+            className="glass-input rounded-lg px-2.5 py-1.5 text-xs font-medium text-slate-700 focus:outline-hidden cursor-pointer"
           >
             <option value="">All Risk Levels</option>
             <option value="CRITICAL">Critical Severity</option>
@@ -287,98 +287,110 @@ export default function StatisticsPage() {
       {/* 2. Executive KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {/* Route Efficiency */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Route Efficiency</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-50 text-brand-700">CALCULATED</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-brand-200/60 bg-gradient-to-br from-brand-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-brand-300/20 rounded-full blur-2xl group-hover:bg-brand-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-800 drop-shadow-sm">Route Efficiency</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-100/80 text-brand-700 backdrop-blur-md border border-brand-200/50">CALCULATED</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-brand-600">{kpis.route_efficiency?.value || "+24.8%"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">Improvement vs conventional routing</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-brand-950 font-mono tracking-tighter drop-shadow-sm">{kpis.route_efficiency?.value || "+24.8%"}</span>
+            <span className="block text-[10px] text-brand-700/80 font-bold uppercase tracking-wider mt-1">Improvement vs conventional</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-brand-200/30 flex items-center gap-1 text-[10px] text-brand-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.route_efficiency?.tooltip}</span>
+            <span className="truncate">{kpis.route_efficiency?.tooltip || "Aggregate travel time and distance"}</span>
           </div>
         </div>
 
         {/* ETA Saved */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Average ETA Saved</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">LIVE</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(16,185,129,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-300/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 drop-shadow-sm">Average ETA Saved</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100/80 text-emerald-700 backdrop-blur-md border border-emerald-200/50">LIVE</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-emerald-600">{kpis.avg_eta_saved?.value || "42 min"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">Per affected delivery</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-emerald-950 font-mono tracking-tighter drop-shadow-sm">{kpis.avg_eta_saved?.value || "42 min"}</span>
+            <span className="block text-[10px] text-emerald-700/80 font-bold uppercase tracking-wider mt-1">Per affected delivery</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-emerald-200/30 flex items-center gap-1 text-[10px] text-emerald-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.avg_eta_saved?.tooltip}</span>
+            <span className="truncate">{kpis.avg_eta_saved?.tooltip || "Mean travel delay avoided"}</span>
           </div>
         </div>
 
         {/* Operational Cost Saved */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Cost Saved</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200/60">ESTIMATED</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-amber-200/60 bg-gradient-to-br from-amber-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(245,158,11,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-amber-300/20 rounded-full blur-2xl group-hover:bg-amber-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 drop-shadow-sm">Cost Saved</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100/80 text-amber-700 backdrop-blur-md border border-amber-200/50">ESTIMATED</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-slate-900">{kpis.cost_saved?.value || "₹84,600"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">Fuel, demurrage & detours</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-amber-950 font-mono tracking-tighter drop-shadow-sm">{kpis.cost_saved?.value || "₹84,600"}</span>
+            <span className="block text-[10px] text-amber-700/80 font-bold uppercase tracking-wider mt-1">Fuel & Demurrage</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-amber-200/30 flex items-center gap-1 text-[10px] text-amber-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.cost_saved?.tooltip}</span>
+            <span className="truncate">{kpis.cost_saved?.tooltip || "Aggregate logistical savings"}</span>
           </div>
         </div>
 
         {/* Manual Interventions */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Manual Interventions</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-50 text-brand-700">AUTOMATION</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-indigo-200/60 bg-gradient-to-br from-indigo-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(99,102,241,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-indigo-300/20 rounded-full blur-2xl group-hover:bg-indigo-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-800 drop-shadow-sm">Manual Interventions</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-100/80 text-indigo-700 backdrop-blur-md border border-indigo-200/50">AUTOMATION</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-brand-700">{kpis.manual_interventions?.value || "-68%"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">Reduced repetitive workload</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-indigo-950 font-mono tracking-tighter drop-shadow-sm">{kpis.manual_interventions?.value || "-68%"}</span>
+            <span className="block text-[10px] text-indigo-700/80 font-bold uppercase tracking-wider mt-1">Reduced workload</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-indigo-200/30 flex items-center gap-1 text-[10px] text-indigo-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.manual_interventions?.tooltip}</span>
+            <span className="truncate">{kpis.manual_interventions?.tooltip || "Proportion of routine risk ev..."}</span>
           </div>
         </div>
 
         {/* Risk Exposure */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Risk Exposure</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">ML PREDICTED</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(16,185,129,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-300/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 drop-shadow-sm">Risk Exposure</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100/80 text-emerald-700 backdrop-blur-md border border-emerald-200/50">ML PREDICTED</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-emerald-600">{kpis.risk_exposure?.value || "-37.7%"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">Hazard reduction after reroute</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-emerald-950 font-mono tracking-tighter drop-shadow-sm">{kpis.risk_exposure?.value || "-37.7%"}</span>
+            <span className="block text-[10px] text-emerald-700/80 font-bold uppercase tracking-wider mt-1">Hazard reduction</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-emerald-200/30 flex items-center gap-1 text-[10px] text-emerald-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.risk_exposure?.tooltip}</span>
+            <span className="truncate">{kpis.risk_exposure?.tooltip || "Net reduction in forecasted..."}</span>
           </div>
         </div>
 
         {/* Delivery Reliability */}
-        <div className="relative p-5 rounded-2xl border border-slate-200/80 bg-white shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Delivery Reliability</span>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-50 text-sky-700">TELEMETRY</span>
+        <div className="relative p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-sky-200/60 bg-gradient-to-br from-sky-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(14,165,233,0.15)] overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -top-10 -right-10 w-24 h-24 bg-sky-300/20 rounded-full blur-2xl group-hover:bg-sky-400/30 transition-colors duration-500" />
+          <div className="flex items-start justify-between relative z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800 drop-shadow-sm">Delivery Reliability</span>
+            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-100/80 text-sky-700 backdrop-blur-md border border-sky-200/50">TELEMETRY</span>
           </div>
-          <div className="my-2">
-            <span className="text-3xl font-bold tracking-tight text-sky-600">{kpis.delivery_reliability?.value || "94.7%"}</span>
-            <span className="block text-[11px] text-slate-500 font-medium mt-1">On-time consignment SLA</span>
+          <div className="my-3 relative z-10">
+            <span className="text-4xl font-black text-sky-950 font-mono tracking-tighter drop-shadow-sm">{kpis.delivery_reliability?.value || "94.7%"}</span>
+            <span className="block text-[10px] text-sky-700/80 font-bold uppercase tracking-wider mt-1">On-time SLA</span>
           </div>
-          <div className="pt-2 border-t border-slate-100 flex items-center gap-1 text-[10px] text-slate-400">
+          <div className="pt-2 border-t border-sky-200/30 flex items-center gap-1 text-[10px] text-sky-600/70 relative z-10">
             <Info className="w-3 h-3 shrink-0" />
-            <span className="truncate">{kpis.delivery_reliability?.tooltip}</span>
+            <span className="truncate">{kpis.delivery_reliability?.tooltip || "Percentage of monitored hi..."}</span>
           </div>
         </div>
       </div>
@@ -386,8 +398,8 @@ export default function StatisticsPage() {
       {/* 3. SETU-ROUTE Impact Score & Before vs After Matrix */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* SETU-ROUTE Impact Score (5 cols) */}
-        <div className="lg:col-span-5 p-6 rounded-2xl border border-slate-200/80 bg-white shadow-card flex flex-col justify-between">
-          <div>
+        <div className="lg:col-span-5 p-6 rounded-2xl border border-slate-200/80 bg-white shadow-card flex flex-col">
+          <div className="mb-8">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Composite Impact Rating</span>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">

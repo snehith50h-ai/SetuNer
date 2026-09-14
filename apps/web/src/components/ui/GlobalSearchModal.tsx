@@ -95,10 +95,10 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
       results.districts.length > 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 p-4 text-xs animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-floating overflow-hidden flex flex-col max-h-[80vh]">
+    <div className="fixed inset-0 z-50 bg-slate-950/45 backdrop-blur-md flex items-start justify-center pt-16 sm:pt-24 p-4 text-xs animate-in fade-in duration-200">
+      <div className="w-full max-w-2xl glass-modal border border-white/80 rounded-3xl shadow-glass-lg overflow-hidden flex flex-col max-h-[80vh]">
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-slate-100 gap-3 bg-white">
+        <div className="flex items-center px-5 py-4 border-b border-white/60 gap-3 bg-white/40 backdrop-blur-md">
           <Search className="w-4 h-4 text-brand-600 shrink-0" />
           <input
             ref={inputRef}
@@ -106,7 +106,7 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search arterial corridors, vehicles, consignments, incidents, or districts..."
-            className="flex-1 bg-transparent border-0 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0 text-sm"
+            className="flex-1 bg-transparent border-0 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0 text-sm font-medium"
           />
           {query && (
             <button onClick={() => setQuery("")} className="p-1 rounded-md text-slate-400 hover:text-slate-600">
@@ -115,7 +115,7 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
           )}
           <button
             onClick={onClose}
-            className="px-2 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 text-xs font-medium"
+            className="px-2.5 py-1 rounded-xl bg-white/80 hover:bg-white text-slate-500 hover:text-slate-700 text-xs font-bold border border-white/80 shadow-xs"
           >
             Esc
           </button>

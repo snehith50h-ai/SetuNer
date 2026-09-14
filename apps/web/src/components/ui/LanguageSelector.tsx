@@ -15,12 +15,12 @@ export const LanguageSelector: React.FC = () => {
   const { currentLanguage, setLanguage } = useLanguageStore();
 
   return (
-    <div className="flex items-center gap-1 bg-slate-50 border border-slate-200/80 rounded-xl p-0.5 text-xs shadow-xs">
-      <Languages className="w-3.5 h-3.5 text-slate-400 ml-2 shrink-0" />
+    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md hover:bg-slate-200/50 transition-colors cursor-pointer text-xs">
+      <Languages className="w-4 h-4 text-slate-500 shrink-0 ml-1" />
       <select
         value={currentLanguage}
         onChange={(e) => setLanguage(e.target.value as LanguageCode)}
-        className="bg-transparent border-0 text-slate-700 font-medium focus:ring-0 text-xs py-1 pl-1 pr-2 cursor-pointer focus:outline-none"
+        className="bg-transparent border-0 text-slate-700 font-semibold focus:ring-0 text-[12px] py-1 pl-1 pr-1 cursor-pointer focus:outline-none appearance-none"
         aria-label="Select Language"
       >
         {LANGUAGES.map((lang) => (

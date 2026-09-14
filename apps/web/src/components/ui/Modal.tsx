@@ -44,14 +44,14 @@ export const Modal: React.FC<ModalProps> = ({
   }[maxWidth];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/45 backdrop-blur-md animate-in fade-in duration-200">
       <div
         className={cn(
-          "w-full rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-150",
+          "w-full rounded-3xl glass-modal border border-white/80 shadow-glass-lg overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200",
           maxWidthClass
         )}
       >
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+        <div className="px-6 py-4 border-b border-white/60 flex items-center justify-between bg-white/40 backdrop-blur-md">
           <div>
             <h2 className="text-sm font-bold text-slate-900 tracking-tight">
               {title}
@@ -62,7 +62,7 @@ export const Modal: React.FC<ModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-white/70 border border-transparent hover:border-white/60 transition-colors"
             aria-label="Close"
           >
             <X className="w-4 h-4" />

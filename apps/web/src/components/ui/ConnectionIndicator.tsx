@@ -87,36 +87,34 @@ export const ConnectionIndicator: React.FC = () => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`flex items-center gap-2 px-2.5 py-1 rounded-full border transition-all shadow-xs cursor-pointer select-none text-xs ${
+        className={`flex items-center gap-1.5 px-2 py-1 rounded-md transition-colors cursor-pointer select-none hover:bg-slate-200/50 ${
           isTrulyLive
-            ? "bg-emerald-50/90 hover:bg-emerald-100/80 border-emerald-200/90 text-emerald-800"
+            ? "text-slate-700"
             : isReconnecting
-            ? "bg-amber-50/90 hover:bg-amber-100/80 border-amber-200/90 text-amber-800"
-            : "bg-rose-50/90 hover:bg-rose-100/80 border-rose-200/90 text-rose-800"
+            ? "text-amber-600"
+            : "text-rose-600"
         }`}
         title="Click to inspect real-time data sources and network telemetry"
         aria-label="Real-time Connection Status"
       >
         <span
-          className={`w-2 h-2 rounded-full ${
+          className={`w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor] ${
             isTrulyLive
-              ? "bg-emerald-500 animate-pulse"
+              ? "bg-emerald-500 animate-pulse text-emerald-500"
               : isReconnecting
-              ? "bg-amber-500 animate-ping"
-              : "bg-rose-500"
+              ? "bg-amber-500 animate-ping text-amber-500"
+              : "bg-rose-500 text-rose-500"
           }`}
         />
-        <span className="font-bold text-[11px] tracking-wide">
-          {isTrulyLive ? "LIVE" : isReconnecting ? "RECONNECTING" : "OFFLINE"}
+        <span className="font-semibold text-[12px] tracking-tight uppercase">
+          {isTrulyLive ? "Live" : isReconnecting ? "Reconnecting" : "Offline"}
         </span>
 
         {latencyMs > 0 && isTrulyLive && (
-          <span className="text-[10px] text-emerald-600/80 font-mono hidden sm:inline">
+          <span className="text-[10px] text-slate-400 font-mono hidden sm:inline ml-0.5">
             ({latencyMs}ms)
           </span>
         )}
-
-        <ChevronDown className="w-3 h-3 text-slate-400" />
       </button>
 
       {/* Interactive Telemetry & Active Sources Popover */}

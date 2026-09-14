@@ -50,10 +50,26 @@ const config: Config = {
         subtle: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)",
         card: "0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02)",
         floating: "0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)",
-        glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+        glass: "0 8px 32px 0 rgba(31, 38, 135, 0.08)",
+        "glass-lg": "0 16px 48px 0 rgba(15, 23, 42, 0.1)",
+        "glass-sm": "0 4px 16px 0 rgba(31, 38, 135, 0.05)",
+        "glass-card": "0 8px 30px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02)",
+        "glass-hover": "0 14px 40px -4px rgba(31, 38, 135, 0.12), 0 4px 12px rgba(15, 23, 42, 0.04)",
+        "glow-brand": "0 0 25px rgba(59, 130, 246, 0.3)",
+        "glow-rose": "0 0 25px rgba(244, 63, 94, 0.3)",
+        "glow-emerald": "0 0 25px rgba(16, 185, 129, 0.3)",
+        "glow-amber": "0 0 25px rgba(245, 158, 11, 0.3)",
+      },
+      backdropBlur: {
+        xs: "2px",
+        sm: "4px",
+        md: "8px",
+        lg: "16px",
+        xl: "24px",
+        "2xl": "40px",
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
         mono: ["JetBrains Mono", "Menlo", "Monaco", "Consolas", "monospace"],
       },
       borderRadius: {
@@ -62,6 +78,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

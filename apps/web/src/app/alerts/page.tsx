@@ -319,16 +319,16 @@ export default function AlertsPage() {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/map"
-                    className="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors inline-flex items-center gap-1"
+                    className="px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-white text-slate-700 text-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.02),inset_0_0_0_1px_rgba(203,213,225,0.4)] transition-all duration-300 ease-out hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_0_0_1px_rgba(203,213,225,0.6)] active:scale-[0.98] inline-flex items-center gap-1.5"
                   >
-                    <MapPin className="w-3.5 h-3.5 text-brand-600" />
+                    <MapPin className="w-3.5 h-3.5 text-brand-500" />
                     <span>View on Map</span>
                   </Link>
                   <Link
                     href="/routes"
-                    className="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors inline-flex items-center gap-1"
+                    className="px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-white text-slate-700 text-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.02),inset_0_0_0_1px_rgba(203,213,225,0.4)] transition-all duration-300 ease-out hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_0_0_1px_rgba(203,213,225,0.6)] active:scale-[0.98] inline-flex items-center gap-1.5"
                   >
-                    <Route className="w-3.5 h-3.5 text-purple-600" />
+                    <Route className="w-3.5 h-3.5 text-purple-500" />
                     <span>Plan Detour</span>
                   </Link>
                   <button
@@ -346,7 +346,7 @@ export default function AlertsPage() {
                         is_acknowledged: alert.is_acknowledged,
                       })
                     }
-                    className="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors inline-flex items-center gap-1"
+                    className="px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-white text-slate-700 text-xs font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.02),inset_0_0_0_1px_rgba(203,213,225,0.4)] transition-all duration-300 ease-out hover:shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_0_0_1px_rgba(203,213,225,0.6)] active:scale-[0.98] inline-flex items-center gap-1.5"
                   >
                     <Eye className="w-3.5 h-3.5 text-slate-500" />
                     <span>Deep Briefing</span>

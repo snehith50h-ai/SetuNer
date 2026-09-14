@@ -18,6 +18,7 @@ import { apiClient } from "@/lib/api-client";
 import { Alert } from "@/types";
 import { formatRelativeTime } from "@/lib/utils";
 import { useToast } from "@/components/ui/ToastProvider";
+import { SlidingTabs } from "@/components/ui/SlidingTabs";
 
 import { AlertDetailModal, AlertDetailData } from "@/components/alerts/AlertDetailModal";
 
@@ -73,67 +74,46 @@ export const NotificationCenter: React.FC = () => {
     <div className="relative text-xs" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors border border-slate-200/80 shadow-xs"
+        className="relative p-2 rounded-md hover:bg-slate-200/50 text-slate-600 hover:text-slate-900 transition-colors active:scale-95"
         aria-label="Notification Center"
       >
-        <Bell className="w-4 h-4" />
-        {unreadAlerts.length > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-xs animate-subtle-pulse">
+        <Bell className="w-[18px] h-[18px]" />
+        <span className="t-badge" data-open={unreadAlerts.length > 0 ? "true" : "false"}>
+          <span className="t-badge-dot flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-[0_0_8px_rgba(244,63,94,0.6)]">
             {unreadAlerts.length > 9 ? "9+" : unreadAlerts.length}
           </span>
-        )}
+        </span>
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2.5 w-80 sm:w-96 rounded-2xl bg-white border border-slate-200/90 shadow-floating z-50 overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute right-0 mt-2.5 w-80 sm:w-96 rounded-3xl glass-modal border border-white/80 shadow-glass-lg z-50 overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
           {/* Header */}
-          <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-white">
+          <div className="p-4 border-b border-white/60 flex items-center justify-between bg-white/40 backdrop-blur-md">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600">
+              <div className="w-7 h-7 rounded-xl bg-brand-50/80 border border-brand-200/60 flex items-center justify-center text-brand-600 shadow-xs">
                 <ShieldAlert className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="font-bold text-slate-900 text-sm">Operational Alerts</h4>
-                <p className="text-[11px] text-slate-400">Real-time corridor and hazard feed</p>
+                <p className="text-[11px] text-slate-500">Real-time corridor and hazard feed</p>
               </div>
             </div>
-            <span className="px-2 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-bold">
+            <span className="px-2.5 py-0.5 rounded-full bg-rose-50/80 border border-rose-200/80 text-rose-700 text-[10px] font-bold shadow-xs">
               {unreadAlerts.length} Unread
             </span>
           </div>
 
           {/* Filter Tabs */}
-          <div className="grid grid-cols-3 border-b border-slate-100 bg-slate-50/70 text-center text-xs">
-            <button
-              onClick={() => setTab("unread")}
-              className={`py-2.5 font-medium transition-all ${
-                tab === "unread"
-                  ? "text-brand-600 border-b-2 border-brand-600 bg-white font-semibold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-            >
-              Unread ({unreadAlerts.length})
-            </button>
-            <button
-              onClick={() => setTab("critical")}
-              className={`py-2.5 font-medium transition-all ${
-                tab === "critical"
-                  ? "text-rose-600 border-b-2 border-rose-600 bg-white font-semibold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-            >
-              Critical ({criticalAlerts.length})
-            </button>
-            <button
-              onClick={() => setTab("all")}
-              className={`py-2.5 font-medium transition-all ${
-                tab === "all"
-                  ? "text-slate-900 border-b-2 border-slate-900 bg-white font-semibold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-            >
-              All ({alerts.length})
-            </button>
+          <div className="border-b border-slate-100 bg-slate-50/70 p-2 flex justify-center">
+            <SlidingTabs
+              tabs={[
+                { id: 'unread', label: `Unread (${unreadAlerts.length})` },
+                { id: 'critical', label: `Critical (${criticalAlerts.length})` },
+                { id: 'all', label: `All (${alerts.length})` },
+              ]}
+              activeId={tab}
+              onChange={(id) => setTab(id as 'unread' | 'critical' | 'all')}
+            />
           </div>
 
           {/* Notifications List */}

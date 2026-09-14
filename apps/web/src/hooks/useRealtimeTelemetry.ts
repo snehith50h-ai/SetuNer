@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { API_BASE_URL } from "@/lib/api-client";
 import { useConnectionStore } from "@/lib/connection-store";
+import { useAuthStore } from "@/stores/authStore";
 import { useToast } from "@/components/ui/ToastProvider";
 
 // Synthesize pleasant emergency tone using browser Web Audio API
@@ -45,6 +46,8 @@ export function useRealtimeTelemetry() {
 
   const connect = useCallback(() => {
     if (typeof window === "undefined") return;
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) return;
 
     let wsUrl: string;
     try {

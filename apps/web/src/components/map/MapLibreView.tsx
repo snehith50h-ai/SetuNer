@@ -694,7 +694,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
   const [incidentSeverityFilter, setIncidentSeverityFilter] = useState<string>("ALL");
   const [activeSpiderfyId, setActiveSpiderfyId] = useState<string | null>(null);
   const [hoveredRouteIdx, setHoveredRouteIdx] = useState<number | null>(null);
-  const [isLegendOpen, setIsLegendOpen] = useState<boolean>(true);
+  const [isLegendOpen, setIsLegendOpen] = useState<boolean>(false);
   const [totalIncidentsCount, setTotalIncidentsCount] = useState<number>(DEFAULT_INCIDENTS.length);
   const [filteredIncidentsCount, setFilteredIncidentsCount] = useState<number>(DEFAULT_INCIDENTS.length);
 
@@ -872,7 +872,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
           }
         </div>
 
-        <div class="mt-1 px-1.5 py-0.5 bg-white/95 backdrop-blur-md rounded-md shadow-xs border border-slate-200/90 text-[10px] font-bold text-slate-800 whitespace-nowrap flex items-center gap-1 group-hover:border-brand-400 group-hover:bg-brand-50 transition-colors">
+        <div class="mt-1 px-1.5 py-0.5 bg-white/95 backdrop-blur-sm rounded-md shadow-xs border border-slate-200/90 text-[10px] font-bold text-slate-800 whitespace-nowrap flex items-center gap-1 group-hover:border-brand-400 group-hover:bg-brand-50 transition-colors">
           <span class="${isCold ? "text-cyan-700" : "text-emerald-700"}">${isCold ? "❄️" : "🏢"}</span>
           <span class="max-w-[80px] truncate">${st.name.split(" ")[0]}</span>
           <span class="text-slate-400 font-normal">|</span>
@@ -942,7 +942,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
           </svg>
         </div>
 
-        <div class="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-30 px-2.5 py-1 bg-slate-900/95 backdrop-blur-md text-white rounded-lg shadow-xl text-[11px] font-bold whitespace-nowrap flex items-center gap-1.5 border border-slate-700/80">
+        <div class="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-30 px-2.5 py-1 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl text-[11px] font-bold whitespace-nowrap flex items-center gap-1.5 border border-slate-700/80">
           <span class="text-sky-300">🚚</span>
           <span class="font-mono text-sky-200 font-bold">${veh.id ? `ID: ${veh.id}` : reg}</span>
           ${veh.id && veh.registration_number ? `<span class="text-slate-400 font-normal text-[10px]">(${veh.registration_number})</span>` : ""}
@@ -990,11 +990,10 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
         <!-- Animated Radar Waves for Critical and High Hazards -->
         ${
           isCritical
-            ? `<span class="absolute -inset-2.5 rounded-2xl ${visual.pulseColor} opacity-40 animate-ping"></span>
-               <span class="absolute -inset-1.5 rounded-2xl ${visual.pulseColor} opacity-60 animate-pulse"></span>
+            ? `<span class="absolute -inset-1 rounded-2xl ${visual.pulseColor} opacity-60 animate-pulse"></span>
                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-600 rounded-full border border-white z-20"></span>`
             : isHigh
-            ? `<span class="absolute -inset-1.5 rounded-2xl ${visual.pulseColor} opacity-40 animate-pulse"></span>`
+            ? `<span class="absolute -inset-1 rounded-2xl ${visual.pulseColor} opacity-40 animate-pulse"></span>`
             : ""
         }
 
@@ -1011,15 +1010,8 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
           : ""
       }
 
-      <!-- Compact 1-Line Corridor Micro Tag -->
-      <div class="mt-0.5 px-1.5 py-0.2 bg-white/95 backdrop-blur-md rounded shadow-xs border border-slate-200/90 text-[9px] font-bold whitespace-nowrap flex items-center gap-1 group-hover:border-rose-400 group-hover:bg-rose-50 transition-colors pointer-events-none">
-        <span class="font-extrabold" style="color: ${visual.colorHex};">${visual.typeLabel.split(" ")[0]}</span>
-        <span class="text-slate-300 font-normal">•</span>
-        <span class="text-slate-700 font-medium max-w-[85px] truncate">${roadDisplay}</span>
-      </div>
-
       <!-- Compact 1-Line Glassmorphic Hover Preview Tooltip (Zero Clipping) -->
-      <div class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-50 px-2.5 py-1 bg-slate-900/95 backdrop-blur-md text-white rounded-lg shadow-xl text-[11px] whitespace-nowrap border border-slate-700/80 flex items-center gap-2 max-w-[240px]">
+      <div class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-50 px-2.5 py-1 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl text-[11px] whitespace-nowrap border border-slate-700/80 flex items-center gap-2 max-w-[240px]">
         <span class="w-2 h-2 rounded-full ${freshnessDot}"></span>
         <span class="font-bold text-slate-100 truncate">${inc.title}</span>
         <span class="text-[9px] px-1.5 py-0.2 rounded font-bold uppercase ${visual.severityBadgeClass}">
@@ -1034,6 +1026,8 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
   // Render Optimized High-Visibility Tactical Alert & Hazard Markers with Spiderfy & Clustering
   const renderIncidentMarkers = (mapInst: maplibregl.Map, incidentDataList?: IncidentMapData[]) => {
+    if (!mapInst) return;
+    
     if (incidentDataList) {
       rawIncidentsRef.current = incidentDataList;
       setTotalIncidentsCount(incidentDataList.length);
@@ -1089,7 +1083,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
           properties: {},
         }));
 
-        const src = mapInst.getSource("spiderfy-lines-src") as maplibregl.GeoJSONSource;
+        const src = (mapInst as any).style ? mapInst.getSource("spiderfy-lines-src") as maplibregl.GeoJSONSource : null;
         if (src) {
           src.setData({
             type: "FeatureCollection",
@@ -1148,7 +1142,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
         spiderfyCollapseMarkerRef.current = collapseMarker;
       }
     } else {
-      const src = mapInst.getSource("spiderfy-lines-src") as maplibregl.GeoJSONSource;
+        const src = (mapInst as any).style ? mapInst.getSource("spiderfy-lines-src") as maplibregl.GeoJSONSource : null;
       if (src) {
         src.setData({ type: "FeatureCollection", features: [] });
       }
@@ -1169,7 +1163,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
         // Tooltip showing brief count on hover
         const previewEl = document.createElement("div");
-        previewEl.className = "absolute -top-11 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-95 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-50 px-2.5 py-1 bg-slate-900/95 backdrop-blur-md text-white rounded-lg shadow-xl text-[10px] whitespace-nowrap border border-slate-700/80 flex items-center gap-1.5";
+        previewEl.className = "absolute -top-11 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none scale-95 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-150 z-50 px-2.5 py-1 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl text-[10px] whitespace-nowrap border border-slate-700/80 flex items-center gap-1.5";
         previewEl.innerHTML = `
           <span class="font-bold text-amber-300">${cluster.items.length} Incidents</span>
           <span class="text-slate-400">•</span>
@@ -1407,7 +1401,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
               roadPopupRef.current
                 .setLngLat(e.lngLat)
                 .setHTML(`
-                  <div class="px-2.5 py-1.5 bg-slate-900/95 backdrop-blur-md text-white rounded-lg shadow-xl text-xs border border-slate-700/80 select-none">
+                  <div class="px-2.5 py-1.5 bg-slate-900/95 backdrop-blur-sm text-white rounded-lg shadow-xl text-xs border border-slate-700/80 select-none">
                     <div class="font-bold flex items-center gap-1.5 text-sky-300">
                       <span>🛣️</span>
                       <span class="font-mono text-white text-xs">${props.code || "Highway"}</span>
@@ -1637,7 +1631,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
           routeTooltipPopupRef.current
             .setLngLat(e.lngLat)
             .setHTML(`
-              <div class="px-3 py-2 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-xl text-xs border border-slate-700/80 select-none">
+              <div class="px-3 py-2 bg-slate-900/95 backdrop-blur-sm text-white rounded-xl shadow-xl text-xs border border-slate-700/80 select-none">
                 <div class="font-bold flex items-center gap-1.5" style="color: ${r.color}">
                   <span class="w-2.5 h-2.5 rounded-full" style="background: ${r.color}"></span>
                   <span class="text-white text-xs">${r.name}</span>
@@ -1911,8 +1905,8 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
         />
       )}
 
-      {/* Floating Modern Map Navigation Controls (Top-Left) */}
-      <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5 bg-white/95 backdrop-blur-md p-1.5 rounded-2xl border border-slate-200/90 shadow-floating">
+      {/* Floating Modern Map Navigation Controls (Bottom-Right) */}
+      <div className="absolute bottom-8 right-4 z-10 flex flex-col gap-1.5 bg-white/95 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/90 shadow-floating">
         <button
           onClick={handleZoomIn}
           className="p-2 rounded-xl text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition-colors"
@@ -1948,9 +1942,9 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
         </button>
       </div>
 
-      {/* Floating Tactical Incident Filter Toolbar (Top-Left, beside Nav) */}
+      {/* Floating Tactical Incident Filter Toolbar (Top-Left) */}
       {showFilterToolbar && (
-        <div className="absolute top-4 left-18 z-10 hidden md:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-slate-200/90 shadow-floating text-xs">
+        <div className="absolute top-4 left-4 z-10 hidden md:flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-2xl border border-slate-200/90 shadow-floating text-xs">
           <div className="flex items-center gap-1.5 font-bold text-slate-700 pr-2 border-r border-slate-200">
             <Filter className="w-3.5 h-3.5 text-brand-600" />
             <span className="text-[11px]">Incidents</span>
@@ -2036,7 +2030,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
       {/* Floating GIS Layers Controller Toggle (Top-Right) */}
       {showLayerController && (
-        <div className="absolute top-4 right-4 z-10 rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-md shadow-floating text-xs text-slate-700 transition-all max-w-[210px] overflow-hidden">
+        <div className="absolute top-4 right-4 z-10 rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-floating text-xs text-slate-700 transition-all max-w-[210px] overflow-hidden">
           <div className="p-2.5 flex items-center justify-between font-semibold text-slate-900 bg-white">
             <span className="flex items-center gap-1.5 text-xs">
               <Layers className="w-3.5 h-3.5 text-brand-600" />
@@ -2182,7 +2176,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
       {/* Floating Active Route HUD (Bottom Center) */}
       {activeRouteInfo && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-brand-200 shadow-floating flex items-center gap-4 text-xs animate-in fade-in slide-in-from-bottom-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl border border-brand-200 shadow-floating flex items-center gap-4 text-xs animate-in fade-in slide-in-from-bottom-2">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
               <Navigation className="w-3.5 h-3.5" />
@@ -2223,7 +2217,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
       {/* Floating Interactive Road Corridor Drawer (Bottom-Left) */}
       {selectedRoad && (
-        <div className="absolute bottom-4 left-4 z-20 p-4 rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-md shadow-floating text-xs max-w-sm w-full animate-in fade-in slide-in-from-bottom-2 duration-150">
+        <div className="absolute bottom-4 left-4 z-20 p-4 rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-floating text-xs max-w-sm w-full animate-in fade-in slide-in-from-bottom-2 duration-150">
           <div className="flex items-start justify-between border-b border-slate-100 pb-2.5">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
@@ -2303,7 +2297,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
       {/* Floating Incident Detail Drawer */}
       {selectedIncident && (
-        <div className="absolute bottom-4 right-4 z-20 p-4 rounded-2xl border border-rose-200 bg-white/95 backdrop-blur-md shadow-floating text-xs max-w-md w-full animate-in fade-in slide-in-from-bottom-2 duration-150">
+        <div className="absolute bottom-4 right-4 z-20 p-4 rounded-2xl border border-rose-200 bg-white/95 backdrop-blur-sm shadow-floating text-xs max-w-md w-full animate-in fade-in slide-in-from-bottom-2 duration-150">
           <div className="flex items-start justify-between border-b border-slate-100 pb-2.5">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
@@ -2439,7 +2433,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
 
       {/* Persistent Map Symbology Legend (Bottom-Left) */}
       {showLegend && (
-        <div className="absolute bottom-6 left-6 z-10 max-w-[240px] bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-floating text-xs overflow-hidden transition-all">
+        <div className="absolute bottom-6 left-6 z-10 max-w-[240px] bg-white/95 backdrop-blur-sm rounded-2xl border border-slate-200/90 shadow-floating text-xs overflow-hidden transition-all">
           <div
             onClick={() => setIsLegendOpen(!isLegendOpen)}
             className="px-3 py-2 flex items-center justify-between font-bold text-slate-800 cursor-pointer hover:bg-slate-50 select-none"
@@ -2512,7 +2506,7 @@ export const MapLibreView: React.FC<MapLibreViewProps> = ({
       {/* Small Floating Recenter Button on Map */}
       <button
         onClick={handleResetView}
-        className="absolute bottom-6 right-6 z-10 flex items-center gap-1.5 px-3 py-2 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-floating text-slate-700 hover:text-brand-600 hover:bg-white hover:border-brand-300 font-semibold text-xs transition-all hover:scale-105 active:scale-95 group"
+        className="absolute bottom-6 right-6 z-10 flex items-center gap-1.5 px-3 py-2 bg-white/95 backdrop-blur-sm rounded-2xl border border-slate-200/90 shadow-floating text-slate-700 hover:text-brand-600 hover:bg-white hover:border-brand-300 font-semibold text-xs transition-all hover:scale-105 active:scale-95 group"
         title="Recenter Map View to North Eastern Region"
         aria-label="Recenter Map View"
       >

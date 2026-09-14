@@ -19,7 +19,12 @@ if ($apiConn) {
     Write-Host "[API] FastAPI backend is already running on port 8008 (PID: $($apiConn.OwningProcess[0]))" -ForegroundColor Green
 } else {
     Write-Host "[API] Starting FastAPI backend on port 8008 in background..." -ForegroundColor Yellow
-    $apiCmd = "`$env:PATH = 'd:\tools\node;d:\tools\python;d:\tools\python\Scripts;' + `$env:PATH; Set-Location '$apiDir'; & 'd:\tools\python\Scripts\uvicorn.exe' src.main:app --host 0.0.0.0 --port 8008 *> '$apiLog'"
+    $uvicornExe = Join-Path $apiDir ".venv\Scripts\uvicorn.exe"
+    if (-not (Test-Path $uvicornExe)) {
+        $found = Get-Command uvicorn -ErrorAction SilentlyContinue
+        $uvicornExe = if ($found) { $found.Source } else { "uvicorn" }
+    }
+    $apiCmd = "Set-Location '$apiDir'; & '$uvicornExe' src.main:app --host 0.0.0.0 --port 8008 *> '$apiLog'"
     Start-Process powershell -ArgumentList "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", $apiCmd -WindowStyle Hidden
 }
 
@@ -29,7 +34,12 @@ if ($webConn) {
     Write-Host "[WEB] Next.js frontend is already running on port 3000 (PID: $($webConn.OwningProcess[0]))" -ForegroundColor Green
 } else {
     Write-Host "[WEB] Starting Next.js frontend on port 3000 in background..." -ForegroundColor Yellow
-    $webCmd = "`$env:PATH = 'd:\tools\node;d:\tools\python;d:\tools\python\Scripts;' + `$env:PATH; Set-Location '$webDir'; & 'd:\tools\node\npm.cmd' run start *> '$webLog'"
+    $npmExe = (Get-Command npm.cmd -ErrorAction SilentlyContinue).Source
+    if (-not $npmExe) {
+        $npmExe = (Get-Command npm -ErrorAction SilentlyContinue).Source
+    }
+    if (-not $npmExe) { $npmExe = "npm" }
+    $webCmd = "Set-Location '$webDir'; & '$npmExe' run start *> '$webLog'"
     Start-Process powershell -ArgumentList "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", $webCmd -WindowStyle Hidden
 }
 

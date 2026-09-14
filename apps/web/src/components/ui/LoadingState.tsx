@@ -1,15 +1,18 @@
 import React from "react";
-import { Loader2, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MatrixLoader } from "./MatrixLoader";
 
 interface LoadingStateProps {
   message?: string;
   className?: string;
+  variant?: 'scan' | 'twinkle' | 'orbit' | 'pulse';
 }
 
 export const LoadingState: React.FC<LoadingStateProps> = ({
   message = "Loading telemetry...",
   className,
+  variant = 'scan',
 }) => {
   return (
     <div
@@ -18,8 +21,8 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
         className
       )}
     >
-      <Loader2 className="w-7 h-7 text-brand-600 animate-spin mb-3" />
-      <p className="text-xs font-medium text-slate-500">{message}</p>
+      <MatrixLoader variant={variant} className="mb-4" />
+      <p className="text-[11px] font-semibold tracking-wider uppercase text-slate-500">{message}</p>
     </div>
   );
 };

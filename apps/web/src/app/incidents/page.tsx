@@ -286,7 +286,7 @@ export default function IncidentsPage() {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="glass-panel p-4 rounded-2xl shadow-glass grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="relative">
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -297,7 +297,7 @@ export default function IncidentsPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full bg-slate-50/70 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+            className="w-full glass-input rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 transition-all"
           />
         </div>
 
@@ -309,7 +309,7 @@ export default function IncidentsPage() {
               setSelectedSeverity(e.target.value);
               setCurrentPage(1);
             }}
-            className="flex-1 bg-slate-50/70 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+            className="flex-1 glass-input rounded-xl px-3 py-2 text-xs text-slate-700 font-medium transition-all"
           >
             <option value="ALL">All Severities</option>
             <option value="CRITICAL">Critical (Total Block)</option>
@@ -327,7 +327,7 @@ export default function IncidentsPage() {
               setSelectedStatus(e.target.value);
               setCurrentPage(1);
             }}
-            className="flex-1 bg-slate-50/70 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+            className="flex-1 glass-input rounded-xl px-3 py-2 text-xs text-slate-700 font-medium transition-all"
           >
             <option value="ALL">All Statuses</option>
             <option value="OPEN">Open</option>
@@ -341,7 +341,7 @@ export default function IncidentsPage() {
           <span>{filteredAndSorted.length} incidents found</span>
           <button
             onClick={() => refetch()}
-            className="p-1.5 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-white/40 transition-colors"
             title="Refresh Incidents"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isFetching ? "animate-spin" : ""}`} />
@@ -367,9 +367,9 @@ export default function IncidentsPage() {
         />
       ) : (
         <div className="space-y-3">
-          <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white shadow-card">
+          <div className="overflow-x-auto rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl shadow-glass">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/80 border-b border-slate-100 text-slate-400 uppercase tracking-wider text-[11px] font-semibold select-none">
+              <thead className="bg-slate-50/60 backdrop-blur-md border-b border-slate-200/60 text-slate-400 uppercase tracking-wider text-[11px] font-semibold select-none">
                 <tr>
                   <th
                     onClick={() => handleSort("incident_code")}
@@ -428,12 +428,12 @@ export default function IncidentsPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700">
+              <tbody className="divide-y divide-slate-100/60 text-slate-700">
                 {paginatedIncidents.map((inc) => (
                   <tr
                     key={inc.id}
                     onClick={() => setActiveIncident(inc)}
-                    className="hover:bg-slate-50/80 cursor-pointer transition-colors group"
+                    className="hover:bg-brand-500/5 cursor-pointer transition-colors group"
                   >
                     <td className="py-4 px-5 font-mono font-bold text-slate-900 group-hover:text-brand-600">
                       {inc.incident_code}

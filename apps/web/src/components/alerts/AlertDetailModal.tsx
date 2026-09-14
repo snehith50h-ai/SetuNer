@@ -57,9 +57,9 @@ export const AlertDetailModal: React.FC<AlertDetailModalProps> = ({
   const isHigh = alert.severity === "HIGH";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
       <div
-        className="bg-white rounded-3xl shadow-2xl border border-slate-200/90 max-w-2xl w-full overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-150"
+        className="bg-white rounded-3xl shadow-2xl border border-slate-200/90 max-w-2xl w-full overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -189,14 +189,27 @@ export const AlertDetailModal: React.FC<AlertDetailModalProps> = ({
               Dismiss
             </button>
 
-            {onAcknowledge && !alert.is_acknowledged && (
+            {onAcknowledge && (
               <button
-                onClick={() => onAcknowledge(alert.id)}
-                disabled={isAcknowledging}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs transition-transform hover:scale-105 inline-flex items-center gap-1.5 disabled:opacity-50"
+                onClick={() => !alert.is_acknowledged && onAcknowledge(alert.id)}
+                disabled={isAcknowledging || alert.is_acknowledged}
+                className={`px-4 py-2 rounded-xl text-white text-xs font-bold shadow-xs transition-transform inline-flex items-center gap-1.5 disabled:opacity-50 ${alert.is_acknowledged ? 'bg-emerald-500 cursor-default' : 'bg-emerald-600 hover:bg-emerald-700 hover:scale-105'}`}
               >
-                <Check className="w-4 h-4" />
-                <span>{isAcknowledging ? "Updating..." : "Acknowledge Threat"}</span>
+                <div className="relative flex items-center justify-center w-4 h-4">
+                  <Check className={`w-4 h-4 absolute transition-opacity duration-200 ${alert.is_acknowledged ? 'opacity-0' : 'opacity-100'}`} />
+                  <span className="t-success-check absolute" data-state={alert.is_acknowledged ? "in" : "out"} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                </div>
+                <span>
+                  {alert.is_acknowledged 
+                    ? "Threat Acknowledged" 
+                    : isAcknowledging 
+                      ? "Updating..." 
+                      : "Acknowledge Threat"}
+                </span>
               </button>
             )}
           </div>

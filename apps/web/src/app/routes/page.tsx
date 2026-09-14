@@ -295,13 +295,13 @@ export default function RoutesPage() {
   return (
     <div className="space-y-6 text-xs pb-10">
       {/* 1. Header */}
-      <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="glass-card border border-white/80 rounded-3xl p-5 sm:p-6 shadow-glass-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shadow-xs shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-brand-50/80 border border-brand-200/80 text-brand-600 flex items-center justify-center shadow-xs shrink-0">
             <RouteIcon className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
+            <h1 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900">
               Real-Time AI Route Intelligence & Decision Support
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -313,9 +313,9 @@ export default function RoutesPage() {
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <button
             onClick={() => setIsConnectionModalOpen(true)}
-            className="px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold flex items-center gap-1.5 hover:bg-emerald-100 transition-colors"
+            className="px-3.5 py-1.5 rounded-full bg-emerald-50/80 border border-emerald-300/60 text-emerald-700 text-xs font-bold flex items-center gap-1.5 hover:bg-emerald-100/90 transition-colors shadow-xs"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shadow-[0_0_8px_rgba(16,185,129,0.7)]"></span>
             <span>● LIVE DATA STREAM</span>
           </button>
         </div>
@@ -331,14 +331,14 @@ export default function RoutesPage() {
       />
 
       {/* 3. Dispatch Controls Card */}
-      <div className="p-5 rounded-2xl border border-slate-200/90 bg-white shadow-card space-y-4">
+      <div className="p-5 sm:p-6 rounded-3xl border border-white/80 glass-panel shadow-glass space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
           <div>
-            <label className="block text-slate-700 mb-1.5 font-semibold text-xs">Origin Dispatch Hub</label>
+            <label className="block text-slate-700 mb-1.5 font-bold text-xs">Origin Dispatch Hub</label>
             <select
               value={originIndex}
               onChange={(e) => setOriginIndex(parseInt(e.target.value))}
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 text-xs focus:ring-1 focus:ring-brand-500 font-medium"
+              className="w-full glass-input rounded-xl px-3 py-2 text-slate-800 text-xs focus:ring-1 focus:ring-brand-500 font-semibold shadow-xs"
             >
               {HUBS.map((h, idx) => (
                 <option key={idx} value={idx} disabled={idx === destIndex}>
@@ -607,32 +607,32 @@ export default function RoutesPage() {
                   <div
                     onClick={() => setActiveRouteKey("primary")}
                     className={cn(
-                      "p-4 rounded-2xl border cursor-pointer transition-all space-y-2.5",
+                      "p-4 rounded-3xl border cursor-pointer transition-all space-y-2.5 glass-card glass-card-hover",
                       activeRouteKey === "primary"
-                        ? "bg-brand-50/50 border-brand-500 shadow-md ring-1 ring-brand-500/20"
-                        : "bg-white border-slate-200/90 hover:border-slate-300 shadow-xs"
+                        ? "bg-brand-500/15 border-brand-500 shadow-glass ring-1 ring-brand-500/25"
+                        : "border-white/80 shadow-glass-sm"
                     )}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-brand-600"></span>
-                        <span className="font-bold text-slate-900 text-xs">
+                        <span className="w-2.5 h-2.5 rounded-full bg-brand-600 shadow-[0_0_6px_rgba(37,99,235,0.6)]"></span>
+                        <span className="font-extrabold text-slate-900 text-xs">
                           {liveData.primary_route.name}
                         </span>
                       </div>
                       <span
                         className={cn(
-                          "px-2 py-0.5 rounded-md text-[10px] font-bold border",
+                          "px-2.5 py-0.5 rounded-full text-[10px] font-bold border backdrop-blur-xs shadow-xs",
                           liveData.primary_route.is_recommended
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                            : "bg-rose-50 text-rose-700 border-rose-200"
+                            ? "bg-emerald-50/80 text-emerald-700 border-emerald-300/60"
+                            : "bg-rose-50/80 text-rose-700 border-rose-300/60"
                         )}
                       >
                         {liveData.primary_route.is_recommended ? "RECOMMENDED" : "DEGRADED"}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200/80 text-center">
+                    <div className="grid grid-cols-3 gap-2 bg-white/50 backdrop-blur-xs p-2.5 rounded-2xl border border-white/60 text-center shadow-xs">
                       <div>
                         <span className="text-slate-400 block text-[10px]">Distance</span>
                         <span className="text-slate-800 font-bold text-xs">
@@ -667,25 +667,25 @@ export default function RoutesPage() {
                   <div
                     onClick={() => setActiveRouteKey("alternative")}
                     className={cn(
-                      "p-4 rounded-2xl border cursor-pointer transition-all space-y-2.5",
+                      "p-4 rounded-3xl border cursor-pointer transition-all space-y-2.5 glass-card glass-card-hover",
                       activeRouteKey === "alternative"
-                        ? "bg-purple-50/50 border-purple-500 shadow-md ring-1 ring-purple-500/20"
-                        : "bg-white border-slate-200/90 hover:border-slate-300 shadow-xs"
+                        ? "bg-purple-500/15 border-purple-500 shadow-glass ring-1 ring-purple-500/25"
+                        : "border-white/80 shadow-glass-sm"
                     )}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
-                        <span className="font-bold text-slate-900 text-xs">
+                        <span className="w-2.5 h-2.5 rounded-full bg-purple-600 shadow-[0_0_6px_rgba(147,51,234,0.6)]"></span>
+                        <span className="font-extrabold text-slate-900 text-xs">
                           {liveData.alternative_route.name}
                         </span>
                       </div>
                       <span
                         className={cn(
-                          "px-2 py-0.5 rounded-md text-[10px] font-bold border",
+                          "px-2.5 py-0.5 rounded-full text-[10px] font-bold border backdrop-blur-xs shadow-xs",
                           liveData.alternative_route.is_recommended
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                            : "bg-slate-100 text-slate-600 border-slate-200"
+                            ? "bg-emerald-50/80 text-emerald-700 border-emerald-300/60"
+                            : "bg-slate-100/80 text-slate-600 border-slate-300/60"
                         )}
                       >
                         {liveData.alternative_route.is_recommended
@@ -694,7 +694,7 @@ export default function RoutesPage() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200/80 text-center">
+                    <div className="grid grid-cols-3 gap-2 bg-white/50 backdrop-blur-xs p-2.5 rounded-2xl border border-white/60 text-center shadow-xs">
                       <div>
                         <span className="text-slate-400 block text-[10px]">Distance</span>
                         <span className="text-slate-800 font-bold text-xs">
@@ -730,7 +730,7 @@ export default function RoutesPage() {
             {/* Right 7 Cols: Interactive Map Overlay & Operational AI Verdict */}
             <div className="lg:col-span-7 space-y-4">
               {/* Map Canvas */}
-              <div className="h-[460px] rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-card relative">
+              <div className="h-[460px] rounded-3xl overflow-hidden border border-white/80 glass-panel shadow-glass relative">
                 <MapLibreView
                   candidateRoutes={[
                     ...(liveData.primary_route

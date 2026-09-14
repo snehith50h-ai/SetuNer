@@ -53,22 +53,22 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
   const [selectedStateName, setSelectedStateName] = useState("NER All");
 
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center justify-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-2 rounded-2xl border border-slate-200/90 shadow-floating text-xs">
+    <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1.5 bg-white/95 backdrop-blur-md px-2 py-1.5 rounded-full border border-slate-200/90 shadow-floating text-xs">
       {/* 1. Route Planner Button */}
       <button
         onClick={() => {
           setIsPinHazardMode(false);
           setActiveTool(activeTool === "route" ? null : "route");
         }}
+        title="Route Planner"
         className={cn(
-          "px-3 py-1.5 rounded-xl font-semibold flex items-center gap-1.5 transition-all shadow-2xs",
+          "p-2 rounded-full font-semibold flex items-center justify-center transition-all shadow-2xs",
           activeTool === "route"
             ? "bg-brand-600 text-white shadow-xs scale-[1.02]"
             : "bg-slate-50 hover:bg-slate-100 text-slate-700"
         )}
       >
-        <Navigation className="w-3.5 h-3.5" />
-        <span>Route Planner</span>
+        <Navigation className="w-4 h-4" />
       </button>
 
       {/* 2. Pin Hazard / Instant Report Button */}
@@ -78,15 +78,15 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
           setIsPinHazardMode(next);
           if (next) setActiveTool(null);
         }}
+        title="Pin Hazard"
         className={cn(
-          "px-3 py-1.5 rounded-xl font-semibold flex items-center gap-1.5 transition-all shadow-2xs",
+          "p-2 rounded-full font-semibold flex items-center justify-center transition-all shadow-2xs",
           isPinHazardMode
             ? "bg-rose-600 text-white ring-2 ring-rose-300 animate-pulse"
             : "bg-slate-50 hover:bg-slate-100 text-slate-700"
         )}
       >
-        <Crosshair className="w-3.5 h-3.5 text-rose-500" />
-        <span>{isPinHazardMode ? "Click Map to Pin Hazard" : "Pin Hazard"}</span>
+        <Crosshair className="w-4 h-4 text-rose-500" />
       </button>
 
       {/* 3. Fleet Radar Button */}
@@ -95,15 +95,15 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
           setIsPinHazardMode(false);
           setActiveTool(activeTool === "fleet" ? null : "fleet");
         }}
+        title="Fleet Radar"
         className={cn(
-          "px-3 py-1.5 rounded-xl font-semibold flex items-center gap-1.5 transition-all shadow-2xs",
+          "p-2 rounded-full font-semibold flex items-center justify-center transition-all shadow-2xs",
           activeTool === "fleet"
             ? "bg-blue-600 text-white shadow-xs scale-[1.02]"
             : "bg-slate-50 hover:bg-slate-100 text-slate-700"
         )}
       >
-        <Truck className="w-3.5 h-3.5 text-blue-500" />
-        <span>Fleet Radar</span>
+        <Truck className="w-4 h-4 text-blue-500" />
       </button>
 
       {/* 4. Weather & Flood Overlay Button */}
@@ -112,15 +112,15 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
           setIsPinHazardMode(false);
           setActiveTool(activeTool === "weather" ? null : "weather");
         }}
+        title="Weather Radar"
         className={cn(
-          "px-3 py-1.5 rounded-xl font-semibold flex items-center gap-1.5 transition-all shadow-2xs",
+          "p-2 rounded-full font-semibold flex items-center justify-center transition-all shadow-2xs",
           activeTool === "weather"
             ? "bg-sky-600 text-white shadow-xs scale-[1.02]"
             : "bg-slate-50 hover:bg-slate-100 text-slate-700"
         )}
       >
-        <CloudRain className="w-3.5 h-3.5 text-sky-500" />
-        <span>Weather Radar</span>
+        <CloudRain className="w-4 h-4 text-sky-500" />
       </button>
 
       {/* 5. Simulator Stress-Test Button */}
@@ -129,15 +129,15 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
           setIsPinHazardMode(false);
           setActiveTool(activeTool === "simulator" ? null : "simulator");
         }}
+        title="Stress Simulator"
         className={cn(
-          "px-3 py-1.5 rounded-xl font-semibold flex items-center gap-1.5 transition-all shadow-2xs",
+          "p-2 rounded-full font-semibold flex items-center justify-center transition-all shadow-2xs",
           activeTool === "simulator"
             ? "bg-amber-600 text-white shadow-xs scale-[1.02]"
             : "bg-slate-50 hover:bg-slate-100 text-slate-700"
         )}
       >
-        <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-        <span>Stress Simulator</span>
+        <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
       </button>
 
       <div className="h-5 w-px bg-slate-200 mx-1 hidden sm:block" />
@@ -149,10 +149,10 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
             setIsStatesOpen(!isStatesOpen);
             setIsBasemapOpen(false);
           }}
-          className="px-2.5 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold flex items-center gap-1.5 border border-slate-200/80 transition-colors"
+          className="px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium flex items-center gap-1 border border-slate-200/80 transition-colors ml-1"
         >
           <Compass className="w-3.5 h-3.5 text-brand-600" />
-          <span>{selectedStateName}</span>
+          <span className="hidden sm:inline">{selectedStateName}</span>
           <ChevronDown className="w-3 h-3 text-slate-400" />
         </button>
 
@@ -188,11 +188,10 @@ export const MapToolbox: React.FC<MapToolboxProps> = ({
             setIsBasemapOpen(!isBasemapOpen);
             setIsStatesOpen(false);
           }}
-          className="px-2.5 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold flex items-center gap-1.5 border border-slate-200/80 transition-colors"
+          title="Change Basemap"
+          className="p-1.5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold flex items-center gap-1 border border-slate-200/80 transition-colors"
         >
-          <MapIcon className="w-3.5 h-3.5 text-slate-500" />
-          <span className="capitalize">{basemapStyle}</span>
-          <ChevronDown className="w-3 h-3 text-slate-400" />
+          <MapIcon className="w-4 h-4 text-slate-500" />
         </button>
 
         {isBasemapOpen && (

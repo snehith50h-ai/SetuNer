@@ -131,16 +131,16 @@ export const MapFleetTrackerDrawer: React.FC<MapFleetTrackerDrawerProps> = ({
 
   return (
     <>
-      <div className="absolute top-16 right-4 z-20 w-84 sm:w-96 max-h-[calc(100%-5rem)] bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-floating text-xs overflow-y-auto animate-in fade-in slide-in-from-right-2 duration-150 p-4 space-y-3.5">
+      <div className="absolute top-16 right-4 z-20 w-72 sm:w-80 max-h-[calc(100%-5rem)] bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-floating text-xs overflow-y-auto animate-in fade-in slide-in-from-right-2 duration-150 p-4 space-y-3.5">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold shrink-0">
               <Truck className="w-4 h-4" />
             </div>
-            <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Map GIS Telemetry</span>
-              <h3 className="text-sm font-bold text-slate-900">Live Fleet Radar</h3>
+            <div className="min-w-0">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block truncate">Map GIS Telemetry</span>
+              <h3 className="text-sm font-bold text-slate-900 truncate">Live Fleet Radar</h3>
             </div>
           </div>
           <button

@@ -147,44 +147,44 @@ export default function CommandCenterPage() {
   }
 
   return (
-    <div className="space-y-6 text-xs">
+    <div className="space-y-6 text-xs animate-fade-up">
       {/* Top Banner / Operations Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <h1 className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 glass-header rounded-[28px] lg:rounded-full p-2.5 pl-4 sm:pl-6 lg:pr-2.5">
+        <div className="flex flex-col justify-center py-1 sm:py-2 space-y-1 sm:space-y-1.5">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <h1 className="text-[17px] font-bold tracking-tight text-slate-900 leading-none">
               NER Logistics & Accessibility Command Center
             </h1>
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-bold">
-              ● LIVE TELEMETRY
-            </span>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100/80 shrink-0">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <span className="text-[9px] font-bold tracking-widest text-emerald-700 uppercase">Live Telemetry</span>
+            </div>
           </div>
-          <p className="text-xs text-slate-500">
+          <p className="text-[13px] font-medium text-slate-500 tracking-tight">
             Real-time transportation accessibility, dynamic hazard triage & convoy monitoring across 8 North-Eastern states.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 shrink-0">
+        <div className="flex items-center gap-2 shrink-0 w-full lg:w-auto overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
           <Link
             href="/routes"
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold shadow-xs transition-all hover:scale-[1.02]"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ED] text-white text-[13px] font-semibold transition-all shadow-sm whitespace-nowrap active:scale-95"
           >
-            <Radio className="w-3.5 h-3.5" />
+            <Radio className="w-4 h-4 opacity-80" />
             Route Optimizer
           </Link>
           <Link
             href="/map"
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-all"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 text-[13px] font-semibold border border-slate-200/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] transition-all whitespace-nowrap active:scale-95"
           >
-            <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+            <Zap className="w-4 h-4 text-amber-500 fill-amber-500/20" />
             Live GIS Map
           </Link>
           <Link
             href="/reports"
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-all"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 text-[13px] font-semibold border border-slate-200/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] transition-all whitespace-nowrap active:scale-95"
           >
-            <MapPin className="w-3.5 h-3.5 text-brand-600" />
+            <MapPin className="w-4 h-4 text-slate-400" />
             Field Report
           </Link>
         </div>
@@ -193,20 +193,20 @@ export default function CommandCenterPage() {
       {/* Summary KPI Metrics Row (5 modern cards) */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <MetricCard
-          title="Network Accessibility"
+          title="Accessibility"
           value={`${summary.network_accessibility_percent}%`}
-          subtitle={`${summary.accessible_road_km} km of ${summary.total_road_km} km accessible`}
+          subtitle={`${summary.accessible_road_km}/${summary.total_road_km} km open`}
           icon={Activity}
           href="/map"
           severity={summary.network_accessibility_percent > 80 ? "success" : "warning"}
           progress={summary.network_accessibility_percent}
-          trend={{ value: "+2.4% vs monsoon avg", isPositive: true }}
+          trend={{ value: "+2.4% vs avg", isPositive: true }}
         />
 
         <MetricCard
           title="Active Incidents"
           value={summary.active_incidents_count}
-          subtitle={`${summary.critical_incidents_count} Critical severity`}
+          subtitle={`${summary.critical_incidents_count} Critical alerts`}
           icon={AlertTriangle}
           href="/incidents"
           severity={summary.critical_incidents_count > 0 ? "critical" : "normal"}
@@ -222,18 +222,18 @@ export default function CommandCenterPage() {
         />
 
         <MetricCard
-          title="Deliveries At Risk"
+          title="At-Risk Deliveries"
           value={summary.deliveries_at_risk_count}
-          subtitle={`${summary.deliveries_critical_count} Critical medical consignments`}
+          subtitle={`${summary.deliveries_critical_count} Critical medical`}
           icon={Package}
           href="/deliveries"
           severity={summary.deliveries_at_risk_count > 0 ? "critical" : "normal"}
         />
 
         <MetricCard
-          title="High-Risk Corridors"
+          title="High-Risk Routes"
           value={summary.high_risk_corridors_count}
-          subtitle="Monsoon/Landslide hazard watch"
+          subtitle="Monsoon/Landslide watch"
           icon={ShieldAlert}
           href="/map"
           severity={summary.high_risk_corridors_count > 0 ? "warning" : "normal"}
@@ -262,7 +262,7 @@ export default function CommandCenterPage() {
             </Link>
           </div>
 
-          <div className="h-[440px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-card bg-white">
+          <div className="h-[440px] rounded-3xl overflow-hidden border border-white/80 shadow-glass glass-panel">
             <MapLibreView showLayerController={false} />
           </div>
         </div>
@@ -271,7 +271,7 @@ export default function CommandCenterPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+              <div className="w-6 h-6 rounded-lg bg-amber-50/80 border border-amber-200/60 text-amber-600 flex items-center justify-center shadow-xs">
                 <Clock className="w-3.5 h-3.5" />
               </div>
               <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700">
@@ -286,7 +286,7 @@ export default function CommandCenterPage() {
             </Link>
           </div>
 
-          <div className="h-[440px] rounded-2xl border border-slate-200/90 bg-white p-3.5 overflow-y-auto space-y-2.5 shadow-card">
+          <div className="h-[440px] rounded-3xl border border-white/80 glass-panel p-4 overflow-y-auto space-y-2.5 shadow-glass">
             {!timeline || timeline.length === 0 ? (
               <EmptyState
                 title="No Operational Events"
@@ -296,18 +296,18 @@ export default function CommandCenterPage() {
               timeline.map((evt) => (
                 <div
                   key={evt.id}
-                  className="p-3.5 rounded-xl border border-slate-200/80 bg-slate-50/70 hover:bg-slate-100/80 transition-all space-y-1.5 group"
+                  className="p-3.5 rounded-2xl border border-white/70 bg-white/60 hover:bg-white/90 backdrop-blur-xs transition-all space-y-1.5 group shadow-2xs"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span
-                      className={`text-[10px] px-2 py-0.5 rounded-md font-semibold ${
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold border backdrop-blur-xs ${
                         evt.category === "INCIDENT"
-                          ? "bg-rose-50 text-rose-700 border border-rose-200"
+                          ? "bg-rose-50/80 text-rose-700 border-rose-200"
                           : evt.category === "DELIVERY_EVENT"
-                          ? "bg-sky-50 text-sky-700 border border-sky-200"
+                          ? "bg-sky-50/80 text-sky-700 border-sky-200"
                           : evt.category === "ALERT"
-                          ? "bg-amber-50 text-amber-700 border border-amber-200"
-                          : "bg-purple-50 text-purple-700 border border-purple-200"
+                          ? "bg-amber-50/80 text-amber-700 border-amber-200"
+                          : "bg-purple-50/80 text-purple-700 border-purple-200"
                       }`}
                     >
                       {evt.category.replace(/_/g, " ")}
@@ -332,17 +332,17 @@ export default function CommandCenterPage() {
       {/* LIVE ROAD INTELLIGENCE & BLOCKAGE DETECTION PLATFORM */}
       <div className="space-y-4">
         {/* Intelligence Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white p-4 sm:p-5 rounded-2xl shadow-card border border-slate-700/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 glass-dark text-white p-5 sm:p-6 rounded-3xl shadow-glass-lg border border-white/15">
           <div className="space-y-1">
             <div className="flex items-center gap-2.5 flex-wrap">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]"></span>
               </span>
               <h2 className="text-sm sm:text-base font-extrabold tracking-tight text-white flex items-center gap-2">
                 <span>Real-Time Road Intelligence & Blockage Detection</span>
               </h2>
-              <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono font-bold">
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono font-bold">
                 {intelSummary?.sources_online ?? 6}/{intelSummary?.total_sources ?? 6} FEEDS ONLINE
               </span>
             </div>
@@ -354,7 +354,7 @@ export default function CommandCenterPage() {
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setShowSourcesPanel(!showSourcesPanel)}
-              className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 backdrop-blur-sm transition-colors flex items-center gap-1.5"
             >
               <Globe className="w-3.5 h-3.5 text-sky-400" />
               <span>{showSourcesPanel ? "Hide Sources" : "Sources Health"}</span>
@@ -362,7 +362,7 @@ export default function CommandCenterPage() {
             <button
               onClick={() => syncMutation.mutate()}
               disabled={syncMutation.isPending}
-              className="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 disabled:opacity-50"
+              className="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-md shadow-brand-500/25 transition-all flex items-center gap-1.5 disabled:opacity-50"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${syncMutation.isPending ? "animate-spin" : ""}`} />
               <span>{syncMutation.isPending ? "Polling Feeds..." : "Sync Live Feeds"}</span>
@@ -370,70 +370,101 @@ export default function CommandCenterPage() {
           </div>
         </div>
 
-        {/* Real-Time External Incident Metrics Counter Row */}
+        {/* Real-Time External Incident Metrics Counter Row - WATER DROP DESIGN */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-          <div className="p-3.5 rounded-xl border border-rose-200/90 bg-rose-50/50 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-rose-700">
-              <span className="text-[10px] uppercase font-bold tracking-wider">Direct Blockages</span>
-              <AlertTriangle className="w-4 h-4 text-rose-600" />
+          {/* Card 1: Rose */}
+          <div className="p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-rose-200/60 bg-gradient-to-br from-rose-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(225,29,72,0.15)] relative overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+            {/* Liquid Glare / Reflection */}
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-rose-300/20 rounded-full blur-2xl group-hover:bg-rose-400/30 transition-colors duration-500" />
+            
+            <div className="flex flex-col items-center justify-center text-center text-rose-700 relative z-10 space-y-3">
+              <div className="p-3 bg-white/60 rounded-full shadow-sm backdrop-blur-md border border-white/80 group-hover:scale-110 transition-transform duration-500">
+                <AlertTriangle className="w-5 h-5 text-rose-600 drop-shadow-sm" />
+              </div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-rose-800">Direct Blockages</span>
             </div>
-            <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-2xl font-black text-rose-900 font-mono">
+            <div className="mt-4 flex flex-col items-center justify-center gap-1 relative z-10">
+              <span className="text-4xl font-black text-rose-950 font-mono tracking-tighter drop-shadow-sm">
                 {intelSummary?.road_closures ?? 0}
               </span>
-              <span className="text-[10px] text-rose-600 font-semibold">Corridors Cut Off</span>
+              <span className="text-[10px] text-rose-600 font-bold uppercase tracking-wider">Corridors Cut Off</span>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl border border-amber-200/90 bg-amber-50/50 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-amber-700">
-              <span className="text-[10px] uppercase font-bold tracking-wider">Landslides / Slips</span>
-              <Mountain className="w-4 h-4 text-amber-600" />
+          {/* Card 2: Amber */}
+          <div className="p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-amber-200/60 bg-gradient-to-br from-amber-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(217,119,6,0.15)] relative overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-amber-300/20 rounded-full blur-2xl group-hover:bg-amber-400/30 transition-colors duration-500" />
+            
+            <div className="flex flex-col items-center justify-center text-center text-amber-700 relative z-10 space-y-3">
+              <div className="p-3 bg-white/60 rounded-full shadow-sm backdrop-blur-md border border-white/80 group-hover:scale-110 transition-transform duration-500">
+                <Mountain className="w-5 h-5 text-amber-600 drop-shadow-sm" />
+              </div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-amber-800">Landslides</span>
             </div>
-            <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-2xl font-black text-amber-900 font-mono">
+            <div className="mt-4 flex flex-col items-center justify-center gap-1 relative z-10">
+              <span className="text-4xl font-black text-amber-950 font-mono tracking-tighter drop-shadow-sm">
                 {intelSummary?.landslides ?? 0}
               </span>
-              <span className="text-[10px] text-amber-600 font-semibold">Slope Failures</span>
+              <span className="text-[10px] text-amber-600 font-bold uppercase tracking-wider">Slope Failures</span>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl border border-sky-200/90 bg-sky-50/50 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-sky-700">
-              <span className="text-[10px] uppercase font-bold tracking-wider">Flood Inundations</span>
-              <Waves className="w-4 h-4 text-sky-600" />
+          {/* Card 3: Sky (Flood) */}
+          <div className="p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-sky-200/60 bg-gradient-to-br from-sky-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(14,165,233,0.15)] relative overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-sky-300/20 rounded-full blur-2xl group-hover:bg-sky-400/30 transition-colors duration-500" />
+            
+            <div className="flex flex-col items-center justify-center text-center text-sky-700 relative z-10 space-y-3">
+              <div className="p-3 bg-white/60 rounded-full shadow-sm backdrop-blur-md border border-white/80 group-hover:scale-110 transition-transform duration-500">
+                <Waves className="w-5 h-5 text-sky-600 drop-shadow-sm" />
+              </div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-sky-800">Flood Impact</span>
             </div>
-            <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-2xl font-black text-sky-900 font-mono">
+            <div className="mt-4 flex flex-col items-center justify-center gap-1 relative z-10">
+              <span className="text-4xl font-black text-sky-950 font-mono tracking-tighter drop-shadow-sm">
                 {intelSummary?.floods ?? 0}
               </span>
-              <span className="text-[10px] text-sky-600 font-semibold">River Waterlog</span>
+              <span className="text-[10px] text-sky-600 font-bold uppercase tracking-wider">River Waterlog</span>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl border border-indigo-200/90 bg-indigo-50/50 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-indigo-700">
-              <span className="text-[10px] uppercase font-bold tracking-wider">Severe Weather</span>
-              <CloudRain className="w-4 h-4 text-indigo-600" />
+          {/* Card 4: Indigo */}
+          <div className="p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-indigo-200/60 bg-gradient-to-br from-indigo-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(99,102,241,0.15)] relative overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-indigo-300/20 rounded-full blur-2xl group-hover:bg-indigo-400/30 transition-colors duration-500" />
+            
+            <div className="flex flex-col items-center justify-center text-center text-indigo-700 relative z-10 space-y-3">
+              <div className="p-3 bg-white/60 rounded-full shadow-sm backdrop-blur-md border border-white/80 group-hover:scale-110 transition-transform duration-500">
+                <CloudRain className="w-5 h-5 text-indigo-600 drop-shadow-sm" />
+              </div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-800">Severe Weather</span>
             </div>
-            <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-2xl font-black text-indigo-900 font-mono">
+            <div className="mt-4 flex flex-col items-center justify-center gap-1 relative z-10">
+              <span className="text-4xl font-black text-indigo-950 font-mono tracking-tighter drop-shadow-sm">
                 {intelSummary?.severe_weather ?? 0}
               </span>
-              <span className="text-[10px] text-indigo-600 font-semibold">Storm Alerts</span>
+              <span className="text-[10px] text-indigo-600 font-bold uppercase tracking-wider">Storm Alerts</span>
             </div>
           </div>
 
-          <div className="p-3.5 rounded-xl border border-emerald-200/90 bg-emerald-50/50 flex flex-col justify-between">
-            <div className="flex items-center justify-between text-emerald-700">
-              <span className="text-[10px] uppercase font-bold tracking-wider">Active Hazards</span>
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          {/* Card 5: Emerald */}
+          <div className="p-5 rounded-t-[40px] rounded-br-[40px] rounded-bl-[14px] glass-card glass-card-hover border border-emerald-200/60 bg-gradient-to-br from-emerald-50/80 via-white/40 to-white/10 flex flex-col justify-between shadow-[0_8px_32px_-8px_rgba(16,185,129,0.15)] relative overflow-hidden group hover:-translate-y-1 transition-all duration-500">
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/80 to-transparent opacity-60 rounded-t-[40px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-emerald-300/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors duration-500" />
+            
+            <div className="flex flex-col items-center justify-center text-center text-emerald-700 relative z-10 space-y-3">
+              <div className="p-3 bg-white/60 rounded-full shadow-sm backdrop-blur-md border border-white/80 group-hover:scale-110 transition-transform duration-500">
+                <ShieldCheck className="w-5 h-5 text-emerald-600 drop-shadow-sm" />
+              </div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-emerald-800">Active Hazards</span>
             </div>
-            <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-2xl font-black text-emerald-900 font-mono">
+            <div className="mt-4 flex flex-col items-center justify-center gap-1 relative z-10">
+              <span className="text-4xl font-black text-emerald-950 font-mono tracking-tighter drop-shadow-sm">
                 {intelSummary?.active_incidents ?? 0}
               </span>
-              <span className="text-[10px] text-emerald-600 font-semibold">Monitored</span>
+              <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider">Monitored</span>
             </div>
           </div>
         </div>
@@ -482,12 +513,12 @@ export default function CommandCenterPage() {
         )}
 
         {/* Live Blockage & Incident Feed with Search & Filter Bar */}
-        <div className="rounded-2xl border border-slate-200/90 bg-white shadow-card overflow-hidden">
+        <div className="rounded-3xl glass-panel border border-white/80 shadow-glass overflow-hidden">
           {/* Feed Controls */}
-          <div className="p-4 border-b border-slate-200/90 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/60">
+          <div className="p-4 border-b border-white/60 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white/40 backdrop-blur-md">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
-                <AlertTriangle className="w-3.5 h-3.5" />
+              <div className="w-7 h-7 rounded-xl bg-rose-50/80 border border-rose-200/60 text-rose-600 flex items-center justify-center shadow-xs">
+                <AlertTriangle className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800">
@@ -508,14 +539,14 @@ export default function CommandCenterPage() {
                   placeholder="Filter by corridor or keyword..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-8 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs text-slate-800 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 w-52"
+                  className="pl-8 pr-3 py-1.5 rounded-xl border border-white/80 text-xs text-slate-800 glass-input focus:outline-none focus:ring-1 focus:ring-brand-500 w-52 shadow-xs"
                 />
               </div>
 
               <select
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value)}
-                className="px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 cursor-pointer"
+                className="px-3 py-1.5 rounded-xl border border-white/80 text-xs font-semibold text-slate-700 glass-pill focus:outline-none focus:ring-1 focus:ring-brand-500 cursor-pointer shadow-xs"
               >
                 <option value="ALL">All Severities</option>
                 <option value="CRITICAL">Critical Only</option>
@@ -527,7 +558,7 @@ export default function CommandCenterPage() {
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 cursor-pointer"
+                className="px-3 py-1.5 rounded-xl border border-white/80 text-xs font-semibold text-slate-700 glass-pill focus:outline-none focus:ring-1 focus:ring-brand-500 cursor-pointer shadow-xs"
               >
                 <option value="ALL">All Hazard Types</option>
                 <option value="landslide">Landslides & Slips</option>
@@ -542,7 +573,7 @@ export default function CommandCenterPage() {
           {/* Incidents Table */}
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/90 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[10px] font-semibold">
+              <thead className="bg-white/40 backdrop-blur-xs border-b border-white/60 text-slate-500 uppercase tracking-wider text-[10px] font-bold">
                 <tr>
                   <th className="py-3.5 px-4">Hazard Code</th>
                   <th className="py-3.5 px-4">Highway Corridor</th>
@@ -712,9 +743,9 @@ export default function CommandCenterPage() {
           </span>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-200/90 bg-white shadow-card">
+        <div className="overflow-x-auto rounded-3xl border border-white/80 glass-panel shadow-glass">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50/90 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[10px] font-semibold">
+            <thead className="bg-white/40 backdrop-blur-xs border-b border-white/60 text-slate-500 uppercase tracking-wider text-[10px] font-bold">
               <tr>
                 <th className="py-3.5 px-5">Highway Code</th>
                 <th className="py-3.5 px-4">Corridor Name</th>

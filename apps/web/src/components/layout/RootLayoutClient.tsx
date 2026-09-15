@@ -10,6 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { RealtimeAlertTicker } from "@/components/alerts/RealtimeAlertTicker";
 import { GlobalErrorBoundary } from "@/components/ui/GlobalErrorBoundary";
 import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -87,7 +88,18 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
         {/* Main Content Area safely centered within available content width */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full max-w-[1680px] mx-auto min-w-0">
           <GlobalErrorBoundary>
-            {children}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={pathname}
+                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full"
+              >
+                {children}
+              </motion.div>
+            </AnimatePresence>
           </GlobalErrorBoundary>
         </main>
       </div>

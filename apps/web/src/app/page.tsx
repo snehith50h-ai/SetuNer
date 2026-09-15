@@ -40,6 +40,8 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { ErrorState } from "@/components/ui/ErrorState";
 import { formatRelativeTime } from "@/lib/utils";
 import { useToast } from "@/components/ui/ToastProvider";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 
 export default function CommandCenterPage() {
   const { addToast } = useToast();
@@ -147,9 +149,14 @@ export default function CommandCenterPage() {
   }
 
   return (
-    <div className="space-y-6 text-xs animate-fade-up">
+    <motion.div 
+      variants={staggerContainer}
+      initial="hidden"
+      animate="show"
+      className="space-y-6 text-xs"
+    >
       {/* Top Banner / Operations Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 glass-header rounded-[28px] lg:rounded-full p-2.5 pl-4 sm:pl-6 lg:pr-2.5">
+      <motion.div variants={fadeInUp} className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 glass-header rounded-[28px] lg:rounded-full p-2.5 pl-4 sm:pl-6 lg:pr-2.5">
         <div className="flex flex-col justify-center py-1 sm:py-2 space-y-1 sm:space-y-1.5">
           <div className="flex flex-wrap items-center gap-2.5">
             <h1 className="text-[17px] font-bold tracking-tight text-slate-900 leading-none">
@@ -188,10 +195,10 @@ export default function CommandCenterPage() {
             Field Report
           </Link>
         </div>
-      </div>
+      </motion.div>
 
       {/* Summary KPI Metrics Row (5 modern cards) */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <motion.div variants={fadeInUp} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <MetricCard
           title="Accessibility"
           value={`${summary.network_accessibility_percent}%`}
@@ -238,10 +245,10 @@ export default function CommandCenterPage() {
           href="/map"
           severity={summary.high_risk_corridors_count > 0 ? "warning" : "normal"}
         />
-      </div>
+      </motion.div>
 
       {/* Main Grid: Operational Map (70% width) & Auditable Timeline Feed (30% width) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <motion.div variants={fadeInUp} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Live Operational Map */}
         <div className="lg:col-span-2 space-y-3">
           <div className="flex items-center justify-between">
@@ -327,10 +334,10 @@ export default function CommandCenterPage() {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* LIVE ROAD INTELLIGENCE & BLOCKAGE DETECTION PLATFORM */}
-      <div className="space-y-4">
+      <motion.div variants={fadeInUp} className="space-y-4">
         {/* Intelligence Header Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 glass-dark text-white p-5 sm:p-6 rounded-3xl shadow-glass-lg border border-white/15">
           <div className="space-y-1">
@@ -725,10 +732,10 @@ export default function CommandCenterPage() {
             </table>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Bottom Table: Critical Highway Corridor Accessibility Status */}
-      <div className="space-y-3">
+      <motion.div variants={fadeInUp} className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
@@ -797,8 +804,8 @@ export default function CommandCenterPage() {
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

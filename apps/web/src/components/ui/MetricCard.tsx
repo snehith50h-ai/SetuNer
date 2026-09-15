@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { LucideIcon, ArrowUpRight, TrendingUp, TrendingDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface MetricCardProps {
@@ -30,9 +31,11 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   className,
 }) => {
   const CardContent = (
-    <div
+    <motion.div
+      whileHover={{ y: -5, scale: 1.015 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "group relative p-5 rounded-2xl transition-all duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-between h-full",
+        "group relative p-5 rounded-2xl flex flex-col justify-between h-full",
         "glass-card glass-card-hover border-white/80 shadow-glass-sm hover:shadow-glass-hover",
         severity === "critical" && "border-rose-300/70 bg-rose-50/40 hover:bg-rose-50/60 shadow-[0_8px_25px_rgba(244,63,94,0.1)]",
         severity === "warning" && "border-amber-300/70 bg-amber-50/40 hover:bg-amber-50/60 shadow-[0_8px_25px_rgba(245,158,11,0.1)]",
@@ -100,7 +103,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 
   if (href) {

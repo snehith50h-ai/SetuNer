@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 import { RealtimeAlertTicker } from "@/components/alerts/RealtimeAlertTicker";
 import { GlobalErrorBoundary } from "@/components/ui/GlobalErrorBoundary";
+import { SmoothScrolling } from "@/components/ui/SmoothScrolling";
 import { cn } from "@/lib/utils";
 
 export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -57,7 +58,8 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
   }
 
   return (
-    <div className="min-h-screen flex bg-mesh-canvas text-foreground relative selection:bg-brand-500 selection:text-white">
+    <SmoothScrolling>
+      <div className="min-h-screen flex bg-mesh-canvas text-foreground relative selection:bg-brand-500 selection:text-white">
       {/* Ambient Lighting Orbs for Glassmorphism Refraction */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden="true">
         <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-500/15 blur-[120px]" />
@@ -90,5 +92,6 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
         </main>
       </div>
     </div>
+    </SmoothScrolling>
   );
 };

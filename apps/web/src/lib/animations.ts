@@ -1,4 +1,6 @@
-export const staggerContainer = {
+import { Variants } from "framer-motion";
+
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -9,7 +11,7 @@ export const staggerContainer = {
   },
 };
 
-export const fadeInUp = {
+export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
   show: {
     opacity: 1,
@@ -23,7 +25,7 @@ export const fadeInUp = {
   },
 };
 
-export const scaleIn = {
+export const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.9, filter: "blur(4px)" },
   show: {
     opacity: 1,

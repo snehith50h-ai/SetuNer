@@ -96,7 +96,7 @@ export const Header: React.FC = () => {
     <>
       <header
         className={cn(
-          "fixed top-4 right-4 z-30 h-16 bg-white/60 backdrop-blur-xl border border-white/80 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-between px-4 lg:px-6 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_2px_rgba(255,255,255,0.8)]",
+          "fixed top-4 right-4 z-30 h-16 bg-white/60 backdrop-blur-xl border border-white/80 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-between pl-4 pr-6 lg:pl-6 lg:pr-8 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_2px_rgba(255,255,255,0.8)]",
           sidebarOpen ? "left-4 md:left-[calc(16rem+1rem)]" : "left-4 md:left-[calc(4rem+1rem)]"
         )}
       >
@@ -167,10 +167,11 @@ export const Header: React.FC = () => {
             
             <button 
               onClick={() => useAuthStore.getState().logout()}
-              className="ml-1 p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors active:scale-95"
+              className="ml-2 flex items-center gap-1.5 px-3 py-1.5 bg-slate-100/80 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors active:scale-95 text-xs font-semibold shadow-sm border border-slate-200/60"
               title="Sign Out"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Log Out
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
             </button>
           </div>
         </div>

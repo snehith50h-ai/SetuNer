@@ -126,13 +126,13 @@ export const Header: React.FC = () => {
         <div className="flex-1 max-w-md mx-4 lg:mx-8 min-w-[120px]">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="w-full bg-slate-100/80 hover:bg-slate-200/60 rounded-full px-4 py-2 flex items-center justify-between transition-all group cursor-pointer shadow-[inset_0_0_0_1px_rgba(0,0,0,0.03)]"
+            className="w-full bg-white/40 hover:bg-white/60 backdrop-blur-md rounded-full px-4 py-2.5 flex items-center justify-between transition-all duration-300 group cursor-pointer shadow-[inset_0_1px_2px_rgba(255,255,255,0.8),0_4px_12px_rgba(0,0,0,0.03)] border border-white/50 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_6px_16px_rgba(0,0,0,0.06)] hover:border-white/70"
           >
             <div className="flex items-center gap-2.5 min-w-0 overflow-hidden">
-              <Search className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors shrink-0" />
-              <span className="truncate text-[13px] font-medium text-slate-500">Search command center...</span>
+              <Search className="w-4 h-4 text-slate-400 group-hover:text-brand-500 transition-colors shrink-0" />
+              <span className="truncate text-[13px] font-semibold text-slate-500/80 group-hover:text-slate-700 transition-colors">Search command center...</span>
             </div>
-            <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white shadow-sm border border-slate-200/60 text-[10px] text-slate-500 font-bold tracking-widest shrink-0">
+            <kbd className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(0,0,0,0.04)] border border-white/60 text-[10px] text-slate-500 font-bold tracking-widest shrink-0 group-hover:bg-white/80 group-hover:text-brand-600 transition-all duration-300">
               <Command className="w-3 h-3" /> K
             </kbd>
           </button>

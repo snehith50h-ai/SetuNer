@@ -96,8 +96,8 @@ export const Header: React.FC = () => {
     <>
       <header
         className={cn(
-          "fixed top-0 right-0 z-30 h-16 bg-white/70 backdrop-blur-2xl border-b border-slate-200/50 transition-all duration-300 flex items-center justify-between px-4 lg:px-6 shadow-[0_1px_3px_rgba(0,0,0,0.02)]",
-          sidebarOpen ? "left-0 md:left-64" : "left-0 md:left-16"
+          "fixed top-4 right-4 z-30 h-16 bg-white/60 backdrop-blur-xl border border-white/80 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-between px-4 lg:px-6 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_2px_rgba(255,255,255,0.8)]",
+          sidebarOpen ? "left-4 md:left-[calc(16rem+1rem)]" : "left-4 md:left-[calc(4rem+1rem)]"
         )}
       >
         {/* Left: Mobile toggle & Breadcrumb */}

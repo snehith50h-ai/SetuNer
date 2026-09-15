@@ -78,7 +78,7 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
         <Header />
 
         {/* Real-time ticker positioned cleanly below fixed header */}
-        <div className="pt-16">
+        <div className="pt-24">
           <RealtimeAlertTicker />
         </div>
 

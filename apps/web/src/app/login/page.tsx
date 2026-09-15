@@ -129,7 +129,7 @@ export default function LoginPage() {
             >
               Secure the region. <br className="hidden md:block" />
               Predict hazards. <br className="hidden md:block" />
-              <span className="aurora-text block text-[1.15em] pb-2">Optimize logistics.</span>
+              <span className="aurora-text block text-[1.15em] pb-2 uppercase tracking-tighter font-black">OPTIMIZE LOGISTICS.</span>
             </h1>
 
             {/* Subheadline */}

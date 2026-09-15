@@ -139,38 +139,40 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Right: Controls & Profile */}
-        <div className="flex items-center justify-end gap-2 sm:gap-3.5 shrink-0">
+        <div className="flex items-center justify-end gap-2 sm:gap-3.5 min-w-0">
           {/* System Health */}
-          <div className="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 text-emerald-700 text-[11px] font-bold tracking-tight border border-emerald-100/50">
+          <div className="hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50/80 text-emerald-700 text-[11px] font-bold tracking-tight border border-emerald-100/50 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
             System Healthy
           </div>
 
-          <ConnectionIndicator />
-          <LanguageSelector />
-          <NotificationCenter />
-          <ClockWidget />
+          <div className="shrink-0 flex items-center gap-2 sm:gap-3.5">
+            <ConnectionIndicator />
+            <LanguageSelector />
+            <NotificationCenter />
+            <ClockWidget />
+          </div>
 
           {/* User Profile */}
-          <div className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-slate-200/80 h-8">
+          <div className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-slate-200/80 h-8 min-w-0 shrink-0 lg:shrink">
             <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-sm shrink-0">
               {user?.full_name ? user.full_name[0] : "A"}
             </div>
-            <div className="hidden md:flex flex-col justify-center">
-              <span className="text-[13px] font-bold text-slate-900 leading-none tracking-tight">
+            <div className="hidden md:flex flex-col justify-center min-w-0">
+              <span className="text-[13px] font-bold text-slate-900 leading-none tracking-tight truncate max-w-[100px] xl:max-w-[150px]">
                 {user?.full_name || "Operations Lead"}
               </span>
-              <span className="text-[9px] text-slate-400 uppercase tracking-widest font-extrabold mt-1">
+              <span className="text-[9px] text-slate-400 uppercase tracking-widest font-extrabold mt-1 truncate">
                 {user?.role || "ADMIN"}
               </span>
             </div>
             
             <button 
               onClick={() => useAuthStore.getState().logout()}
-              className="ml-2 flex items-center gap-1.5 px-3 py-1.5 bg-slate-100/80 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors active:scale-95 text-xs font-semibold shadow-sm border border-slate-200/60"
+              className="ml-1 xl:ml-2 flex items-center gap-1.5 px-2 py-1.5 xl:px-3 xl:py-1.5 bg-slate-100/80 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-full transition-colors active:scale-95 text-xs font-semibold shadow-sm border border-slate-200/60 shrink-0"
               title="Sign Out"
             >
-              Log Out
+              <span className="hidden xl:inline">Log Out</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
             </button>
           </div>

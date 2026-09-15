@@ -75,23 +75,25 @@ export const RealtimeAlertTicker: React.FC = () => {
   return (
     <div className="w-full flex justify-center py-3 px-4 pointer-events-none sticky top-0 z-50">
       <div
-        className={`pointer-events-auto max-w-[1680px] w-full rounded-full text-xs font-medium transition-all duration-500 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.2),inset_0_2px_6px_rgba(255,255,255,0.3)] border ${
+        className={`pointer-events-auto max-w-[1680px] w-full rounded-full text-xs font-medium transition-all duration-500 backdrop-blur-2xl border ${
           criticalCount > 0
-            ? "bg-gradient-to-b from-rose-500/20 to-rose-950/40 text-rose-50 border-rose-300/40"
+            ? "bg-white/30 text-slate-800 border-white/60 shadow-[0_8px_32px_0_rgba(225,29,72,0.15),inset_0_2px_8px_rgba(255,255,255,0.8)]"
             : highCount > 0
-            ? "bg-gradient-to-b from-amber-500/20 to-amber-950/40 text-amber-50 border-amber-300/40"
-            : "bg-gradient-to-b from-white/10 to-slate-900/40 text-slate-200 border-white/20"
+            ? "bg-white/30 text-slate-800 border-white/60 shadow-[0_8px_32px_0_rgba(217,119,6,0.15),inset_0_2px_8px_rgba(255,255,255,0.8)]"
+            : "bg-white/20 text-slate-800 border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.1),inset_0_2px_8px_rgba(255,255,255,0.6)]"
         }`}
       >
         <div className="px-5 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           {/* Left: Emergency beacon & Active threat title */}
           <div className="flex items-center gap-2.5 min-w-0 flex-1">
             <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${criticalCount > 0 ? 'bg-rose-500' : 'bg-amber-500'}`}></span>
+              <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${criticalCount > 0 ? 'bg-rose-500' : 'bg-amber-500'}`}></span>
             </span>
 
-            <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-black/20 text-white border border-white/20 shrink-0">
+            <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider border shrink-0 shadow-sm ${
+              criticalCount > 0 ? "bg-rose-500/10 text-rose-700 border-rose-500/30" : "bg-amber-500/10 text-amber-700 border-amber-500/30"
+            }`}>
               {criticalCount > 0 ? "CRITICAL ALERT" : "OPERATIONAL WARNING"}
             </span>
 
@@ -100,7 +102,7 @@ export const RealtimeAlertTicker: React.FC = () => {
                 {latest ? latest.title : `${totalUnacked} Active Operational Alerts Detected`}
               </span>
               {latest?.alert_code && (
-                <span className="hidden md:inline-block font-mono text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white/90 shrink-0">
+                <span className="hidden md:inline-block font-mono text-[10px] bg-slate-900/5 border border-slate-900/10 px-1.5 py-0.5 rounded text-slate-700 shrink-0">
                   {latest.alert_code}
                 </span>
               )}
@@ -111,12 +113,12 @@ export const RealtimeAlertTicker: React.FC = () => {
           <div className="flex items-center gap-2 shrink-0 justify-end flex-wrap">
             <div className="flex items-center gap-1 text-[11px] font-bold">
               {criticalCount > 0 && (
-                <span className="px-2 py-0.5 rounded bg-black/30 text-rose-100 border border-white/10">
+                <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-700 border border-rose-500/20">
                   {criticalCount} Critical
                 </span>
               )}
               {highCount > 0 && (
-                <span className="px-2 py-0.5 rounded bg-black/30 text-amber-100 border border-white/10">
+                <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 border border-amber-500/20">
                   {highCount} High
                 </span>
               )}
@@ -137,7 +139,7 @@ export const RealtimeAlertTicker: React.FC = () => {
                     created_at: latest.created_at,
                   })
                 }
-                className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-[11px] transition-all duration-300 ease-out active:scale-[0.96] flex items-center gap-1.5 shadow-[inset_0_1px_3px_rgba(255,255,255,0.4),0_4px_12px_rgba(0,0,0,0.1)] border border-white/20 backdrop-blur-md"
+                className="px-3 py-1.5 rounded-full bg-white/40 hover:bg-white/60 text-slate-800 font-bold text-[11px] transition-all duration-300 ease-out active:scale-[0.96] flex items-center gap-1.5 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_2px_8px_rgba(0,0,0,0.05)] border border-white/50 backdrop-blur-md"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>Inspect 4-Part Briefing</span>
@@ -148,7 +150,7 @@ export const RealtimeAlertTicker: React.FC = () => {
               <button
                 onClick={() => acknowledgeAlert(latest.id)}
                 disabled={isAcknowledging}
-                className="px-3 py-1.5 rounded-full bg-white/90 text-slate-900 hover:bg-white font-bold text-[11px] transition-all duration-300 ease-out active:scale-[0.96] flex items-center gap-1.5 shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1),0_4px_12px_rgba(255,255,255,0.2)] disabled:opacity-50 border border-white"
+                className="px-3 py-1.5 rounded-full bg-white text-emerald-700 hover:bg-emerald-50 font-bold text-[11px] transition-all duration-300 ease-out active:scale-[0.96] flex items-center gap-1.5 shadow-[inset_0_-2px_4px_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.1)] disabled:opacity-50 border border-white"
               >
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Acknowledge</span>
@@ -157,7 +159,7 @@ export const RealtimeAlertTicker: React.FC = () => {
 
             <Link
               href="/alerts"
-              className="px-3 py-1.5 rounded-full bg-black/20 hover:bg-black/30 text-white font-semibold text-[11px] transition-colors flex items-center gap-1 shadow-[inset_0_1px_2px_rgba(255,255,255,0.15)] border border-white/10 backdrop-blur-md"
+              className="px-3 py-1.5 rounded-full bg-white/30 hover:bg-white/50 text-slate-800 font-semibold text-[11px] transition-colors flex items-center gap-1 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6)] border border-white/40 backdrop-blur-md"
             >
               <span>All Alerts ({totalUnacked})</span>
               <ChevronRight className="w-3 h-3" />
@@ -167,7 +169,7 @@ export const RealtimeAlertTicker: React.FC = () => {
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
               title={soundEnabled ? "Mute alert audio chimes" : "Enable alert audio chimes"}
-              className="p-1 rounded-lg hover:bg-white/20 text-white/90 transition-colors"
+              className="p-1 rounded-lg hover:bg-black/5 text-slate-600 transition-colors"
               aria-label="Toggle Sound"
             >
               {soundEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5 opacity-60" />}
@@ -176,7 +178,7 @@ export const RealtimeAlertTicker: React.FC = () => {
             {/* Minimize / Dismiss */}
             <button
               onClick={() => setIsDismissed(true)}
-              className="p-1 rounded-lg hover:bg-white/20 text-white/80 transition-colors"
+              className="p-1 rounded-lg hover:bg-black/5 text-slate-600 transition-colors"
               aria-label="Minimize alert banner"
             >
               <X className="w-3.5 h-3.5" />

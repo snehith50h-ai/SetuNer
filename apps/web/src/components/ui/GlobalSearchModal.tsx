@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import {
   Search,
@@ -35,7 +36,12 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResults | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,7 +90,7 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
     router.push(href);
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const hasResults =
     results &&
@@ -94,7 +100,7 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
       results.incidents.length > 0 ||
       results.districts.length > 0);
 
-  return (
+  const modalContent = (
     <div className="fixed inset-0 z-50 bg-slate-950/45 backdrop-blur-md flex items-start justify-center pt-16 sm:pt-24 p-4 text-xs animate-in fade-in duration-200">
       <div className="w-full max-w-2xl glass-modal border border-white/80 rounded-3xl shadow-glass-lg overflow-hidden flex flex-col max-h-[80vh]">
         {/* Search Input Bar */}
@@ -271,4 +277,6 @@ export const GlobalSearchModal: React.FC<{ isOpen: boolean; onClose: () => void 
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };

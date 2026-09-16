@@ -45,43 +45,43 @@ export default function DocsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-brand-500 selection:text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#F8F9FA] text-slate-600 font-sans selection:bg-brand-500 selection:text-white relative overflow-hidden">
       
-      {/* Liquid Ambient Backgrounds */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Liquid Ambient Backgrounds (Light Mode) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden mix-blend-multiply">
         <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-blue-600 blur-[120px]" 
+          className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-blue-200 blur-[120px]" 
         />
         <motion.div 
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.2, 0.1] }}
+          animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[40%] -left-[10%] w-[40vw] h-[40vw] rounded-full bg-rose-600 blur-[100px]" 
+          className="absolute top-[40%] -left-[10%] w-[40vw] h-[40vw] rounded-full bg-rose-100 blur-[100px]" 
         />
         <motion.div 
-          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute -bottom-[10%] right-[20%] w-[60vw] h-[60vw] rounded-full bg-purple-600 blur-[140px]" 
+          className="absolute -bottom-[10%] right-[20%] w-[60vw] h-[60vw] rounded-full bg-indigo-100 blur-[140px]" 
         />
       </div>
 
-      {/* Header (Liquid Glass) */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-slate-950/40 backdrop-blur-2xl border-b border-white/5 h-20 flex items-center px-6 md:px-12 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+      {/* Header (Liquid Glass - Light Mode) */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-white/70 backdrop-blur-2xl border-b border-slate-200 h-20 flex items-center px-6 md:px-12 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link href="/login" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
-              <div className="p-2 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+            <Link href="/login" className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors group">
+              <div className="p-2 rounded-full bg-slate-100 group-hover:bg-slate-200 transition-colors">
                 <ArrowLeft className="w-4 h-4" />
               </div>
               <span className="text-sm font-semibold tracking-wide">Back</span>
             </Link>
             
-            <div className="w-px h-8 bg-white/10 hidden md:block"></div>
+            <div className="w-px h-8 bg-slate-200 hidden md:block"></div>
             
             <div className="flex items-center gap-4">
               {/* Logo from login */}
-              <div className="relative w-10 h-10 rounded-full border-[2px] border-[#0f172a] bg-white flex flex-col items-center justify-start pt-[5px] overflow-hidden shadow-[0_0_20px_rgba(14,165,233,0.3)]">
+              <div className="relative w-10 h-10 rounded-full border-[2px] border-[#0f172a] bg-white flex flex-col items-center justify-start pt-[5px] overflow-hidden shadow-lg shadow-blue-900/5">
                 <span className="text-[7px] font-black tracking-[0.1em] text-[#0f172a] leading-[1]">SETU</span>
                 <span className="text-[7px] font-black tracking-[0.1em] text-[#0f172a] leading-[1]">NER</span>
                 <div className="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[110%]">
@@ -97,7 +97,7 @@ export default function DocsPage() {
                   </svg>
                 </div>
               </div>
-              <span className="font-bold text-white tracking-tight text-lg">SETU-NER <span className="font-light text-slate-400">Docs</span></span>
+              <span className="font-bold text-slate-900 tracking-tight text-lg">SETU-NER <span className="font-light text-slate-500">Docs</span></span>
             </div>
           </div>
         </div>
@@ -107,9 +107,9 @@ export default function DocsPage() {
         
         {/* Liquid Drop Sidebar */}
         <aside className="w-full md:w-64 shrink-0 md:sticky md:top-32 space-y-2 relative">
-          <div className="absolute -left-4 top-0 bottom-0 w-px bg-white/5" />
+          <div className="absolute -left-4 top-0 bottom-0 w-px bg-slate-200" />
           
-          <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6 px-4">Contents</h3>
+          <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 px-4">Contents</h3>
           
           <div className="flex flex-col gap-2 relative">
             {SECTIONS.map((sec) => {
@@ -119,14 +119,14 @@ export default function DocsPage() {
                   key={sec.id}
                   onClick={() => scrollTo(sec.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-300 relative group ${
-                    isActive ? "text-white" : "text-slate-400 hover:text-slate-200"
+                    isActive ? "text-brand-700" : "text-slate-500 hover:text-slate-800"
                   }`}
                 >
                   {/* Liquid Active Drop Background */}
                   {isActive && (
                     <motion.div
                       layoutId="sidebar-active"
-                      className="absolute inset-0 bg-white/10 border border-white/10 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-md"
+                      className="absolute inset-0 bg-white border border-slate-100 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.04)]"
                       initial={false}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
@@ -136,13 +136,13 @@ export default function DocsPage() {
                   {isActive && (
                     <motion.div
                       layoutId="sidebar-indicator"
-                      className="absolute -left-[17px] w-1.5 h-6 bg-brand-500 rounded-r-full shadow-[0_0_15px_rgba(14,165,233,0.8)]"
+                      className="absolute -left-[17px] w-1.5 h-6 bg-brand-500 rounded-r-full shadow-[0_0_10px_rgba(14,165,233,0.3)]"
                       initial={false}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
 
-                  <sec.icon className={`w-4 h-4 relative z-10 transition-colors duration-300 ${isActive ? "text-brand-400" : "opacity-50 group-hover:opacity-100"}`} />
+                  <sec.icon className={`w-4 h-4 relative z-10 transition-colors duration-300 ${isActive ? "text-brand-500" : "opacity-50 group-hover:opacity-100"}`} />
                   <span className="relative z-10 tracking-wide">{sec.title}</span>
                 </button>
               );
@@ -159,17 +159,17 @@ export default function DocsPage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="mb-20"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-bold tracking-widest uppercase mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-[10px] font-bold tracking-widest uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.5)]" />
               Official Guidebook
             </div>
-            <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight leading-[1.1]">
+            <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
               SETU-NER <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-blue-400 to-purple-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-blue-600 to-indigo-600">
                 Intelligence Platform
               </span>
             </h1>
-            <p className="text-xl text-slate-400 leading-relaxed font-light max-w-2xl">
+            <p className="text-xl text-slate-500 leading-relaxed font-light max-w-2xl">
               The unified command center for real-time logistics optimization and disruption prediction in the North Eastern Region.
             </p>
           </motion.div>
@@ -177,22 +177,22 @@ export default function DocsPage() {
           <div className="space-y-32">
             
             <Section id="introduction" icon={BookOpen} title="Introduction">
-              <p className="leading-relaxed mb-6 text-lg font-light">
-                <strong className="text-white font-semibold">SETU-NER</strong> (System for Evaluation of Transport Utilities & Regional Optimization in Uncertain Terrain Environments) is a bespoke logistics platform developed for the Ministry of Development of North Eastern Region (MDoNER).
+              <p className="leading-relaxed mb-6 text-lg font-light text-slate-600">
+                <strong className="text-slate-900 font-semibold">SETU-NER</strong> (System for Evaluation of Transport Utilities & Regional Optimization in Uncertain Terrain Environments) is a bespoke logistics platform developed for the Ministry of Development of North Eastern Region (MDoNER).
               </p>
-              <p className="leading-relaxed mb-8 text-lg font-light text-slate-400">
+              <p className="leading-relaxed mb-8 text-lg font-light text-slate-500">
                 Its primary use case is ensuring the uninterrupted flow of essential supplies (medical resources, fuel, food) across highly volatile geographies prone to sudden extreme weather and terrain failures.
               </p>
               
-              <div className="relative overflow-hidden bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl group hover:border-brand-500/30 transition-colors duration-500 shadow-xl">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-brand-500/20 transition-colors duration-700" />
+              <div className="relative overflow-hidden bg-white border border-slate-200/60 rounded-3xl p-8 group hover:border-brand-200 transition-colors duration-500 shadow-sm">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-brand-100 transition-colors duration-700" />
                 <div className="relative z-10 flex flex-col sm:flex-row gap-6 items-start">
-                  <div className="shrink-0 p-3 bg-brand-500/20 rounded-2xl border border-brand-500/30 text-brand-400 shadow-[0_0_20px_rgba(14,165,233,0.2)]">
+                  <div className="shrink-0 p-3 bg-brand-50 rounded-2xl border border-brand-100 text-brand-600 shadow-sm">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-xl mb-3 tracking-tight">Primary Objective</h4>
-                    <p className="text-slate-300 leading-relaxed font-light">
+                    <h4 className="font-bold text-slate-900 text-xl mb-3 tracking-tight">Primary Objective</h4>
+                    <p className="text-slate-600 leading-relaxed font-light">
                       To transition reactive disaster logistics into a proactive, AI-driven routing ecosystem that saves lives, time, and resources by foreseeing supply chain disruptions before they occur.
                     </p>
                   </div>
@@ -201,7 +201,7 @@ export default function DocsPage() {
             </Section>
 
             <Section id="the-challenge" icon={Compass} title="The Regional Challenge" color="amber">
-              <p className="leading-relaxed mb-8 text-lg font-light text-slate-400">
+              <p className="leading-relaxed mb-8 text-lg font-light text-slate-500">
                 The North Eastern Region (NER) of India spans eight states with some of the most challenging topography in the world. High-altitude mountain passes, dense tropical forests, and turbulent river systems define the landscape.
               </p>
               <div className="grid gap-4">
@@ -210,11 +210,11 @@ export default function DocsPage() {
                   { title: "Climatic Extremes", desc: "Sudden flash floods capable of wiping out bridges and submerging routes." },
                   { title: "Information Asymmetry", desc: "Dispatchers relied on delayed communication leading to trapped convoys." }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors shadow-lg backdrop-blur-sm">
-                    <div className="w-2 h-2 rounded-full bg-amber-500 mt-2 shrink-0 shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
+                  <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 hover:bg-slate-50/50 transition-colors shadow-sm">
+                    <div className="w-2 h-2 rounded-full bg-amber-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
                     <div>
-                      <strong className="text-white block mb-1 text-lg">{item.title}</strong>
-                      <span className="text-slate-400 font-light">{item.desc}</span>
+                      <strong className="text-slate-900 block mb-1 text-lg">{item.title}</strong>
+                      <span className="text-slate-500 font-light">{item.desc}</span>
                     </div>
                   </div>
                 ))}
@@ -222,7 +222,7 @@ export default function DocsPage() {
             </Section>
 
             <Section id="architecture" icon={Layers} title="Intelligence Architecture" color="indigo">
-              <p className="leading-relaxed mb-10 text-lg font-light text-slate-400">
+              <p className="leading-relaxed mb-10 text-lg font-light text-slate-500">
                 SETU-NER operates on a closed-loop intelligence cycle consisting of four distinct pillars, processing gigabytes of telemetry in real-time.
               </p>
               
@@ -233,15 +233,15 @@ export default function DocsPage() {
                   { num: "3", title: "Multi-Criteria Routing", desc: "Network graph optimization computes safest, fastest alternate corridors the moment risk thresholds are breached." },
                   { num: "4", title: "Decision Support", desc: "Provides dispatchers with a single pane of glass to confirm reroutes and notify medical/fuel stakeholders." }
                 ].map((pillar, i) => (
-                  <div key={i} className="p-8 bg-white/[0.03] border border-white/10 rounded-3xl backdrop-blur-md hover:bg-white/[0.06] hover:border-indigo-500/30 transition-all duration-500 group relative overflow-hidden shadow-xl">
-                    <div className="absolute -inset-x-full bottom-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_2s_infinite] transition-opacity" />
-                    <h3 className="font-bold text-white flex items-center gap-4 mb-4 text-xl tracking-tight">
-                      <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 text-xs font-black shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                  <div key={i} className="p-8 bg-white border border-slate-200/60 rounded-3xl hover:bg-slate-50/50 hover:border-indigo-200 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-md">
+                    <div className="absolute -inset-x-full bottom-0 h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_2s_infinite] transition-opacity" />
+                    <h3 className="font-bold text-slate-900 flex items-center gap-4 mb-4 text-xl tracking-tight">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-black">
                         {pillar.num}
                       </span>
                       {pillar.title}
                     </h3>
-                    <p className="text-slate-400 leading-relaxed font-light pl-12">
+                    <p className="text-slate-600 leading-relaxed font-light pl-12">
                       {pillar.desc}
                     </p>
                   </div>
@@ -256,10 +256,10 @@ export default function DocsPage() {
                   { title: "Interactive GIS Map", desc: "High-fidelity 3D map overlaying weather patterns, terrain slope steepness, and active hazard zones directly onto the road network." },
                   { title: "Field PWA (Progressive Web App)", desc: "Built for officers in zero-connectivity zones. Allows offline incident reporting with geotagging. Syncs automatically when reconnected." }
                 ].map((mod, i) => (
-                  <div key={i} className="relative pl-8 border-l-2 border-white/10 hover:border-rose-500/50 transition-colors duration-500">
-                    <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-white/20 hover:bg-rose-500 transition-colors" />
-                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{mod.title}</h3>
-                    <p className="text-slate-400 leading-relaxed font-light text-lg">
+                  <div key={i} className="relative pl-8 border-l-2 border-slate-200 hover:border-rose-400 transition-colors duration-500">
+                    <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-slate-300 hover:bg-rose-500 transition-colors" />
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">{mod.title}</h3>
+                    <p className="text-slate-500 leading-relaxed font-light text-lg">
                       {mod.desc}
                     </p>
                   </div>
@@ -268,29 +268,29 @@ export default function DocsPage() {
             </Section>
 
             <Section id="security" icon={Shield} title="Security & Access" color="emerald">
-              <p className="leading-relaxed mb-8 text-lg font-light text-slate-400">
+              <p className="leading-relaxed mb-8 text-lg font-light text-slate-500">
                 As a government platform, SETU-NER enforces strict Role-Based Access Control (RBAC). Actions are heavily audited and constrained based on jurisdictional boundaries.
               </p>
-              <div className="overflow-x-auto rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-2xl">
+              <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
                 <table className="w-full text-left text-sm border-collapse min-w-[600px]">
                   <thead>
-                    <tr className="border-b border-white/10 bg-white/[0.05]">
-                      <th className="p-6 font-semibold text-white tracking-wide">Role</th>
-                      <th className="p-6 font-semibold text-white tracking-wide">Scope</th>
-                      <th className="p-6 font-semibold text-white tracking-wide">Capabilities</th>
+                    <tr className="border-b border-slate-100 bg-slate-50/50">
+                      <th className="p-6 font-semibold text-slate-900 tracking-wide">Role</th>
+                      <th className="p-6 font-semibold text-slate-900 tracking-wide">Scope</th>
+                      <th className="p-6 font-semibold text-slate-900 tracking-wide">Capabilities</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5">
+                  <tbody className="divide-y divide-slate-100">
                     {[
                       { role: "Super Admin (HQ)", scope: "Pan-NER", cap: "Global oversight, user management, system overrides." },
                       { role: "Regional Admin", scope: "State Level", cap: "State-wide routing control, resource allocation." },
                       { role: "District Officer", scope: "District Level", cap: "Incident verification, local dispatcher coordination." },
                       { role: "Field Officer", scope: "On-Ground", cap: "Incident reporting (offline), status updates." }
                     ].map((row, i) => (
-                      <tr key={i} className="hover:bg-white/[0.03] transition-colors">
-                        <td className="p-6 font-medium text-white">{row.role}</td>
-                        <td className="p-6 text-slate-400"><span className="px-3 py-1 bg-white/10 border border-white/5 rounded-full text-xs font-semibold shadow-inner">{row.scope}</span></td>
-                        <td className="p-6 text-slate-400 font-light">{row.cap}</td>
+                      <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-6 font-medium text-slate-900">{row.role}</td>
+                        <td className="p-6 text-slate-500"><span className="px-3 py-1 bg-slate-100 border border-slate-200/60 rounded-full text-xs font-semibold">{row.scope}</span></td>
+                        <td className="p-6 text-slate-600 font-light">{row.cap}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -307,11 +307,11 @@ export default function DocsPage() {
 // Wrapper for scrolling animation sections
 function Section({ id, icon: Icon, title, color = "brand", children }: any) {
   const colors: Record<string, string> = {
-    brand: "text-brand-400 border-brand-500/30 bg-brand-500/10 shadow-[0_0_20px_rgba(14,165,233,0.15)]",
-    amber: "text-amber-400 border-amber-500/30 bg-amber-500/10 shadow-[0_0_20px_rgba(245,158,11,0.15)]",
-    indigo: "text-indigo-400 border-indigo-500/30 bg-indigo-500/10 shadow-[0_0_20px_rgba(99,102,241,0.15)]",
-    rose: "text-rose-400 border-rose-500/30 bg-rose-500/10 shadow-[0_0_20px_rgba(243,33,113,0.15)]",
-    emerald: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+    brand: "text-brand-600 border-brand-200 bg-brand-50 shadow-[0_0_20px_rgba(14,165,233,0.05)]",
+    amber: "text-amber-600 border-amber-200 bg-amber-50 shadow-[0_0_20px_rgba(245,158,11,0.05)]",
+    indigo: "text-indigo-600 border-indigo-200 bg-indigo-50 shadow-[0_0_20px_rgba(99,102,241,0.05)]",
+    rose: "text-rose-600 border-rose-200 bg-rose-50 shadow-[0_0_20px_rgba(243,33,113,0.05)]",
+    emerald: "text-emerald-600 border-emerald-200 bg-emerald-50 shadow-[0_0_20px_rgba(16,185,129,0.05)]",
   };
 
   return (
@@ -327,7 +327,7 @@ function Section({ id, icon: Icon, title, color = "brand", children }: any) {
         <div className={`p-4 rounded-2xl border ${colors[color]} backdrop-blur-md`}>
           <Icon className="w-7 h-7" />
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">{title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">{title}</h2>
       </div>
       {children}
     </motion.section>

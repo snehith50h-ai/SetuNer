@@ -9,8 +9,8 @@ import { RootLayoutClient } from "@/components/layout/RootLayoutClient";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SETU-ROUTE | Smart Logistics & Accessibility Intelligence",
-  description: "SETU-ROUTE: AI-Based Smart Logistics and Accessibility Intelligence Platform for North Eastern Region (MDoNER)",
+  title: "SETU-NER | Smart Logistics & Accessibility Intelligence",
+  description: "SETU-NER: AI-Based Smart Logistics and Accessibility Intelligence Platform for North Eastern Region (MDoNER)",
 };
 
 export default function RootLayout({

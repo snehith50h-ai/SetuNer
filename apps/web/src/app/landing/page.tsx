@@ -62,7 +62,7 @@ export default function LandingPage() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold tracking-tight text-base text-white">SETU-ROUTE</span>
+                <span className="font-bold tracking-tight text-base text-white">SETU-NER</span>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-900/50 text-blue-300 border border-blue-700/50 shadow-xs">
                   SIH 2026 / 26002
                 </span>
@@ -280,7 +280,7 @@ export default function LandingPage() {
       <footer className="glass-dark border-t border-white/10 py-6 text-slate-400 text-xs relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <span className="text-slate-200 font-semibold">SETU-ROUTE Platform</span> — Ministry of Development of North Eastern Region (MDoNER), Government of India.
+            <span className="text-slate-200 font-semibold">SETU-NER Platform</span> — Ministry of Development of North Eastern Region (MDoNER), Government of India.
           </div>
           <div className="flex items-center gap-6 font-medium">
             <Link href="/" className="hover:text-white transition-colors">Command Center</Link>

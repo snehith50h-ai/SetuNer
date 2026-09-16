@@ -170,7 +170,7 @@ npm run dev`}
 
 // --- COMPONENTS ---
 
-const CodeBlock = ({ language, title, children }: { language: string, title?: string, children: React.ReactNode }) => {
+function CodeBlock({ language, title, children }: { language: string, title?: string, children: React.ReactNode }) {
   const [copied, setCopied] = useState(false);
   
   const copy = () => {

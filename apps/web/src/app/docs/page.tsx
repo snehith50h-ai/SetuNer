@@ -222,12 +222,22 @@ export default function TechDocsPage() {
           </button>
           
           <Link href="/login" className="flex items-center gap-2 group">
-            {/* Minimal Logo */}
-            <div className="w-7 h-7 rounded bg-slate-900 flex items-center justify-center">
-              <svg viewBox="0 0 100 45" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-auto">
-                <path d="M50 5 L15 45 L85 45 Z" fill="#38bdf8" />
-                <path d="M50 5 L35 23 L42 26 L50 18 L58 27 L65 22 Z" fill="white" />
-              </svg>
+            {/* Full Logo */}
+            <div className="relative w-8 h-8 rounded-full border-[1.5px] border-[#0f172a] bg-white flex flex-col items-center justify-start pt-[4px] overflow-hidden shadow-sm">
+              <span className="text-[5.5px] font-black tracking-[0.1em] text-[#0f172a] leading-[1]">SETU</span>
+              <span className="text-[5.5px] font-black tracking-[0.1em] text-[#0f172a] leading-[1]">NER</span>
+              <div className="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-[110%]">
+                <svg viewBox="0 0 100 45" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+                  <path d="M50 5 L15 45 L85 45 Z" fill="#0f172a" />
+                  <path d="M50 5 L35 23 L42 26 L50 18 L58 27 L65 22 Z" fill="white" />
+                  <path d="M25 18 L-5 45 L55 45 Z" fill="#0284c7" />
+                  <path d="M25 18 L12 30 L18 32 L25 26 L32 33 L38 29 Z" fill="white" />
+                  <path d="M75 14 L45 45 L105 45 Z" fill="#0ea5e9" />
+                  <path d="M75 14 L62 26 L68 29 L75 23 L82 31 L88 26 Z" fill="white" />
+                  <path d="M-10 40 Q 25 30 50 42 T 110 38 L 110 45 L -10 45 Z" fill="#38bdf8" />
+                  <path d="M-10 43 Q 25 35 50 44 T 110 42 L 110 45 L -10 45 Z" fill="#0284c7" opacity="0.5" />
+                </svg>
+              </div>
             </div>
             <span className="font-bold text-slate-900 tracking-tight text-sm hidden sm:block">SETU-NER</span>
             <span className="px-1.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-500 text-[10px] font-mono ml-1 hidden sm:block">v2.0</span>

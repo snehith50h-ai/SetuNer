@@ -41,7 +41,6 @@ const NAV_ITEMS = [
 ];
 
 const SECONDARY_ITEMS = [
-  { label: "Landing Overview", href: "/landing", icon: Compass },
   { label: "Administration", href: "/admin", icon: Shield },
   { label: "Settings", href: "/settings", icon: Settings },
 ];

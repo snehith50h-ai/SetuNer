@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, ArrowLeft, ArrowRight as ArrowRightIcon, Lock, Mail, Shield, User, MapPin } from "lucide-react";
@@ -238,9 +239,9 @@ export default function LoginPage() {
             
             {/* Subtle Ghost Link below form */}
             <div className="mt-6 flex justify-center">
-              <button className="text-slate-600 font-medium text-sm hover:text-slate-900 transition-colors flex items-center gap-2">
+              <Link href="/docs" className="text-slate-600 font-medium text-sm hover:text-slate-900 transition-colors flex items-center gap-2">
                 Explore Documentation <ArrowRightIcon className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
           </div>
           

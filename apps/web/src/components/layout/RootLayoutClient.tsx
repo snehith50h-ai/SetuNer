@@ -28,7 +28,10 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     if (!isLoading && mounted) {
-      if (!isAuthenticated && pathname !== '/login') {
+      const publicPaths = ['/login', '/landing', '/docs'];
+      const isPublicPath = publicPaths.includes(pathname);
+      
+      if (!isAuthenticated && !isPublicPath) {
         router.push('/login');
       } else if (isAuthenticated && pathname === '/login') {
         router.push('/');
@@ -47,8 +50,9 @@ export const RootLayoutClient: React.FC<{ children: React.ReactNode }> = ({ chil
     </div>;
   }
 
-  // If on login page (and not authenticated), render a clean layout without sidebar/header
-  if (pathname === '/login') {
+  // If on a public page (and not authenticated), render a clean layout without sidebar/header
+  const publicPaths = ['/login', '/landing', '/docs'];
+  if (publicPaths.includes(pathname)) {
     return (
       <div className="min-h-screen w-full bg-slate-50">
         <GlobalErrorBoundary>

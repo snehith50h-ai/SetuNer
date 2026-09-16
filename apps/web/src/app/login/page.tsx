@@ -37,6 +37,25 @@ export default function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: async () => {
+      // Mock login for demo environment if API URL is not set or defaults to localhost
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1";
+      if (!process.env.NEXT_PUBLIC_API_URL || apiUrl.includes("127.0.0.1") || apiUrl.includes("localhost")) {
+        await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate network delay
+        const role = DEMO_ROLES.find(r => r.email === email)?.role || "SUPER_ADMIN";
+        
+        // Mock successful response
+        return {
+          user: {
+            id: "usr_mock_123",
+            email: email,
+            full_name: email.split('@')[0],
+            role: role,
+          },
+          access_token: "mock-jwt-token-for-demo-env"
+        };
+      }
+
+      // Real API request
       return apiClient<any>("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),

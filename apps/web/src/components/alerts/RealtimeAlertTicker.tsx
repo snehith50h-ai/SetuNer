@@ -73,7 +73,7 @@ export const RealtimeAlertTicker: React.FC = () => {
   }
 
   return (
-    <div className="w-full flex justify-center py-3 px-4 pointer-events-none fixed bottom-6 inset-x-0 z-50">
+    <div className="w-full flex justify-center py-3 px-4 pointer-events-none sticky top-20 z-20">
       <div
         className={`pointer-events-auto max-w-[1680px] w-full rounded-full text-xs font-medium transition-all duration-500 backdrop-blur-2xl border ${
           criticalCount > 0

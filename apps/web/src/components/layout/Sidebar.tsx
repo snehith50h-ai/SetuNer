@@ -83,7 +83,7 @@ export const Sidebar: React.FC = () => {
         )}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center justify-between px-4 border-b border-slate-200/60 bg-transparent">
+        <div className="h-16 shrink-0 flex items-center justify-between px-4 border-b border-slate-200/60 bg-transparent">
           <Link
             href="/"
             onClick={handleNavClick}
@@ -134,7 +134,7 @@ export const Sidebar: React.FC = () => {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex-1 overflow-y-auto px-3 py-6 space-y-1">
+        <div className="flex-1 overflow-y-auto min-h-0 px-3 py-6 space-y-1">
           {sidebarOpen && (
             <div className="px-3 pb-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400">
               Operational Modules
@@ -235,7 +235,7 @@ export const Sidebar: React.FC = () => {
 
         {/* Footer Tagline */}
         {sidebarOpen && (
-          <div className="p-3.5 bg-slate-900 m-3 rounded-xl shadow-lg border border-slate-800">
+          <div className="p-3.5 bg-slate-900 m-3 rounded-xl shadow-lg border border-slate-800 shrink-0">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

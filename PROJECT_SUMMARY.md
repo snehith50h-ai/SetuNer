@@ -19,7 +19,23 @@ During monsoons and seismic events, these lifeline corridors routinely suffer fr
 
 ---
 
-## 2. The 6-Stage Closed-Loop Intelligence Workflow
+## 2. Ground Truth Data Context & Local Case Studies
+
+To ensure SETU-ROUTE is built for the harsh realities of the NER, the system incorporates localized vulnerability parameters, referencing specific historical failures and topography:
+
+### A. Specific Highway Bottlenecks & Vulnerable Districts
+*   **NH-6 (East Jaintia Hills, Meghalaya - Cachar, Assam):** The *Sonapur Tunnel* and surrounding valley sections are notorious sinking zones. Landslides here routinely sever the **only** heavy-motorable link to Southern Assam, Tripura, and Mizoram.
+*   **NH-27 (Dima Hasao, Assam):** The Lumding-Badarpur-Silchar segment experiences severe subgrade erosion. The *Haflong* sinking zones frequently wash away entire highway sections during peak monsoons.
+*   **NH-10 (Mangan & Pakyong Districts, Sikkim):** The Teesta river valley gorge route. Susceptible to Glacial Lake Outburst Floods (GLOFs) which can wash out bridges overnight, entirely disconnecting Gangtok and northern defense outposts.
+*   **NH-29 (Dimapur - Kohima, Nagaland):** Prone to rockfalls and mudslides disrupting supply chains into Manipur (via NH-2).
+
+### B. Local Case Studies Driving the ML & Routing Models
+1.  **The May 2022 Dima Hasao Floods (Assam):** Unprecedented rainfall washed out portions of NH-27 and the railway line, isolating the Barak Valley and Tripura for weeks. *SETU-ROUTE addresses this by incorporating cumulative 6-hour rainfall saturation limits in its predictive model, automatically identifying bypasses (e.g., via Meghalaya) before complete collapse.*
+2.  **The October 2023 South Lhonak Lake GLOF (Sikkim):** A flash flood down the Teesta River basin destroyed multiple bridges on NH-10. *SETU-ROUTE’s Incident Reporting PWA and real-time rerouting engine are designed exactly for immediate, catastrophic infrastructure loss, instantly calculating alternative lower-tier state highways.*
+
+---
+
+## 3. The 6-Stage Closed-Loop Intelligence Workflow
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -52,7 +68,7 @@ During monsoons and seismic events, these lifeline corridors routinely suffer fr
 
 ---
 
-## 3. Comprehensive Feature Catalog
+## 4. Comprehensive Feature Catalog
 
 ### 🏢 Module 1: MDoNER Operational Landing Portal (`/landing`)
 * **Authoritative Government Interface:** Clean, high-impact overview tailored for senior administrators and MDoNER officials.
@@ -169,7 +185,7 @@ Dedicated ministerial logistics intelligence suite presenting aggregated operati
 
 ---
 
-## 4. Technical Architecture & Technology Stack
+## 5. Technical Architecture & Technology Stack
 
 ```
                                   FRONTEND CLIENTS
@@ -212,7 +228,7 @@ Dedicated ministerial logistics intelligence suite presenting aggregated operati
 
 ---
 
-## 5. Seeded North Eastern Lifeline Corridors
+## 6. Seeded North Eastern Lifeline Corridors
 
 The system comes pre-configured with the 8 primary logistical lifelines of the North Eastern Region:
 
@@ -227,7 +243,7 @@ The system comes pre-configured with the 8 primary logistical lifelines of the N
 
 ---
 
-## 6. Verification, Testing & Quality Assurance
+## 7. Verification, Testing & Quality Assurance
 
 * **Automated Unit & Integration Tests:** 26 comprehensive tests covering authentication, spatial features, Dijkstra routing calculations, ML risk predictions, idempotent offline sync, scenario simulations, and statistics/analytics intelligence.
   ```bash
@@ -240,7 +256,7 @@ The system comes pre-configured with the 8 primary logistical lifelines of the N
 
 ---
 
-## 7. Local Execution & Active Ports
+## 8. Local Execution & Active Ports
 
 | Service | Address | Purpose |
 |---|---|---|

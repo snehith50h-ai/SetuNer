@@ -28,10 +28,12 @@ export default function RootLayout({
             </RootLayoutClient>
           </ToastProvider>
         </Providers>
-        {/* Transitions.dev Refine Injector (Dev Only) */}
+        {/* Transitions.dev Refine Injector removed to prevent Vercel hanging */}
+        {/* 
         {process.env.NODE_ENV === "development" && (
           <Script strategy="beforeInteractive" type="module" src="http://localhost:7331/inject.js" />
-        )}
+        )} 
+        */}
       </body>
     </html>
   );

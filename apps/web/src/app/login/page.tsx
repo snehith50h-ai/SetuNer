@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { ArrowRight, ArrowLeft, ArrowRight as ArrowRightIcon, Lock, Mail, Shield, User, MapPin } from "lucide-react";
+import { ArrowRight, ArrowLeft, ArrowRight as ArrowRightIcon, Lock, Mail, Shield, User, MapPin, Info } from "lucide-react";
 import { apiClient } from "@/lib/api-client";
 import { useAuthStore } from "@/stores/authStore";
 
@@ -242,6 +242,13 @@ export default function LoginPage() {
                 </div>
               </form>
               
+              <div className="mt-4 p-3 rounded-xl bg-blue-50/50 border border-blue-100 flex items-start gap-2.5">
+                <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <p className="text-[11px] text-blue-700 font-medium leading-relaxed text-left">
+                  Note: The backend runs on a free tier and spins down after inactivity. <strong className="font-bold text-blue-800">It may take up to 60 seconds</strong> for the first login attempt to succeed. Please be patient to avoid timeout errors.
+                </p>
+              </div>
+
               <div className="mt-6 pt-6 border-t border-slate-100 flex flex-wrap justify-center gap-2">
                 {DEMO_ROLES.map((r, i) => (
                   <button
